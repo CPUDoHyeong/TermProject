@@ -142,12 +142,18 @@ Route::post('user/pwUpdate', [
 ]);
 
 // 구글 연동을 위한 route
-// Route::get('/redirect', 'SocialAuthGoogleController@redirect');
-// Route::get('/callback', 'SocialAuthGoogleController@callback');
+Route::get('/redirect', 'SocialAuthGoogleController@redirect');
+Route::get('/callback', 'SocialAuthGoogleController@callback');
 
 // 페이스북 연동을 위한 route
-Route::get('/redirect', 'SocialAuthFacebookController@redirect');
-Route::get('/callback', 'SocialAuthFacebookController@callback');
+// Route::get('/redirect', 'SocialAuthFacebookController@redirect');
+// Route::get('/callback', 'SocialAuthFacebookController@callback');
+
+// 깃허브 로그인
+Route::get('social/{provider}', [
+	'as' => 'social.login',
+	'uses' => 'SocialAuthGithubController@execute',
+]);
 
 
 
