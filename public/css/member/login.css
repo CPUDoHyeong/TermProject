@@ -1,0 +1,222 @@
+
+.se-wrapper {
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+    top: 60px;
+}
+
+.content-login.login-form {
+    width: 100%;
+    margin: 0;
+}
+
+.content-login .forms {
+    text-align: center;
+    padding-top : 60px;
+    padding-bottom: 30px;
+}
+
+.content-login .forms legend {
+    display: none;
+}
+
+.content-login .forms fieldset {
+    max-width: 400px;
+    margin: 0 auto;
+    border: 0;
+    padding: 0;
+}
+
+.content-login h1 {
+    font-size: 30px;
+    line-height: 50px;
+    font-weight: normal;
+}
+
+.content-login .oauth {
+    width: 100%;
+    list-style: none;
+    list-style-image: none;
+    margin-top: 45px;
+    overflow: hidden;
+    margin-bottom: 10px;
+    padding: 0;
+}
+
+.oauth li {
+    float: left;
+}
+
+.oauth li a {
+    width: 195px;
+    height: 35px;
+    display: block;
+    line-height: 35px;
+    text-align: center;
+}
+
+.oauth li:first-child {
+    margin-right: 10px;
+}
+
+a.facebook-connection, a.goole-connection {
+    vertical-align: meddle;
+}
+
+a.facebook-connection {
+    background-color: #49639f;
+}
+
+a.google-connection {
+    background-color: #df4a32;
+}
+
+input[type="text"], input[type="password"], input[type="email"], input[type="number"] {
+    padding: 0 5px;
+}
+
+.content-login input {
+    width: 380px;
+    height: 33px;
+    margin-bottom: 10px;
+    font-size: 15px;
+    padding-left: 13px;
+    border: 1px solid #ccc;
+}
+
+input.error-form-element, textarea.error-form-element {
+    outline: none;
+    border: 1px solid #d32f2f;
+    box-shadow: none;
+}
+
+.login-button, .main-button {
+    width: 150px;
+    height: 35px;
+    margin-bottom: 6px;
+    font-size: 17px;
+    float: left;
+    margin-right: 6px;
+    line-height: 35px;
+    background: #345a9a;
+    border: 1px solid #345a9a;
+    color: #fff;
+    padding: 0;
+}
+
+.login-button:hover, .main-button:hover {
+    background-color: #5a7cb6;
+    border: 1px solid #5a7cb6;
+    cursor: pointer;
+}
+
+.login-button:active, .main-button:active {
+    background-color: #214178;
+    border: 1px solid #000;
+}
+
+
+.extra {
+    margin-top: 7px;
+}
+
+.content-login .extra a {
+    float: right;
+    color: #212121;
+    font-size: 14px;
+}
+
+.error-message {
+    color: #ff6666;
+    font-size: .825em;
+    height: 26px;
+    padding: 5px 0;
+    text-align: left;
+    width: 400px;
+    margin: 0 auto;
+    
+}
+
+.content-login .sign-up {
+    background-color: #f9fafc;
+    margin-top: 30px;
+    padding-bottom: 60px;
+}
+
+.content-login h2 {
+    margin-top: 50px;
+    font-size: 17px;
+    color: #2b557b;
+    margin-bottom: 30px;
+    line-height: 30px;
+    font-weight: normal;
+}
+
+.content-login .terms-and-agree {
+    margin: 30px auto 100px;
+    text-align: center;
+    max-width: 400px;
+}
+
+.content-login .terms-and-agree .agree-title {
+    font-size: 17px;
+    line-height: 29px;
+    margin-bottom: 20px;
+}
+
+.content-login .terms-and-agree .agree-msg {
+    font-size: 13px;
+    line-height: 23px;
+    margin-bottom: 35px;
+}
+
+.content-login .terms-and-agree .agree-msg span {
+    color: #345a9a;
+}
+
+@media screen and (max-width: 420px) {
+    .content-login .forms {
+        padding-right: 10px;
+        padding-left: 10px;
+    }
+    .content-login .forms fieldset {
+        width: auto;
+    }
+
+    .oauth li {
+        width: 48%;
+    }
+
+    .oauth li:first-child {
+        margin-right: 4%;
+    }
+
+    .oauth li a {
+        width: 100%;
+        display: block;
+    }
+
+    .content-login input {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .login-button, .main-button {
+        float: none;
+        width: 100%;
+    }
+
+    .content-login .extra a {
+        float: none;
+    }
+
+    .error-message {
+        width: 100%;
+    }
+
+    .terms-and-agree, .agree-msg {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}

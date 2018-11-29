@@ -1,0 +1,93 @@
+/* 
+여긴 공지사항 화면을 보여주는 css임 
+작성 날짜 : 2018.11.03
+*/
+
+/* .contentbox.view {
+    clear: both;
+} */
+
+.contentbox-header {
+    background-color: #f1f2f4;
+    height: 40px;
+    padding: 0;
+}
+
+.contentbox-header span {
+    display: block;
+    float: left;
+    font-size: 13px;
+    height: inherit;
+    line-height: 40px;
+}
+
+.contentbox-header .num-title {
+    font-size: 15px;
+    padding-left: 40px;
+    font-weight: bold;
+}
+
+.contentbox-header .regtime {
+    float: right;
+    text-align: right;
+    width: 160px;
+    padding-right: 40px;
+}
+
+.contentbox-content {
+    padding: 50px 40px;
+    background-color: #fff;
+    font-size: 16px;
+    line-height: 28px;
+}
+
+.contentbox-content p {
+    font-size:13px;
+    line-height: 23px;
+}
+
+.notice-btns {
+    height: 35px;
+    width: 1200px;
+    margin: 0 auto;
+    padding-bottom: 25px;
+}
+
+.notice-btns .list-btn {
+    display: inline-block;
+    text-align: center;
+    background: #345a9a;
+    border: 1px solid #345a9a;
+    color: #fff;
+    height: 30px;
+    cursor: pointer;
+    font-size: 13px;
+    line-height: 30px;
+    width: 100px;
+    vertical-align: middle;
+}
+
+.notice-btns .list-btn:hover {
+    background: #5a7cb6;
+    border-color: #5a7cb6;
+}
+
+.notice-btns .modify-btn {
+    display: inline-block;
+    text-align: center;
+    background: #fff;
+    border: 1px solid #345a9a;
+    color: #345a9a;
+    cursor: pointer;
+    height: 30px;
+    font-size: 13px;
+    line-height: 30px;
+    width: 100px;
+    vertical-align: middle;
+}
+
+.notice-btns .modify-btn:hover {
+    color: #5a7cb6;
+    border-color: #5a7cb6;
+}
+

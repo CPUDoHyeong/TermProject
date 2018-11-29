@@ -1,0 +1,228 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+*:focus {
+    outline: none;
+    outline-style: solid;
+    outline-color: #999;
+    outline-width: 2px;
+}
+
+.bg {
+    height: 100vh;
+    width: 100%;
+    background: url(../../img/survey/survey_view_bg.jpg) no-repeat center center fixed; -webkit-background-size: cover;
+    -moz-background-size: cover; 
+    -o-background-size: cover; 
+    background-size: cover;
+    overflow-y: scroll;
+}
+
+.wrapper {
+    min-height: 100vh;
+    position: relative;
+    width: 100%;
+    display: flex;
+}
+
+.survey-container {
+    max-width: 770px;
+    position: relative;
+    margin: 99px auto 95px;
+    background-color: rgba(255, 255, 255, 0.95);
+}
+
+.survey-title {
+    position: relative;
+    margin: 14px 0 15px;
+    padding: 0 5px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.title-wrapper {
+    padding: 15px 29px;
+    margin-top: 15px;
+}
+
+.title-wrapper h1 {
+    font-size: 19px;
+    line-height: 25px;
+    font-weight: bold;
+    margin: 0;
+    color: #345a9a;
+}
+
+.hidden-data {
+    margin: 0;
+    padding: 0;
+    display: inline;
+}
+
+.show-wrapper .info {
+    clear: both;
+    position: relative;
+    padding: 5px 29px;
+}
+
+.show-wrapper .info p {
+    height: auto;
+    font-size: 16px;
+    line-height: 24px;
+    color: #333;
+    font-weight: 560;
+}
+
+.show-wrapper .etc-wrapper {
+    clear: both;
+    position: relative;
+    padding: 3px 29px;
+}
+
+.show-wrapper .etc-wrapper .view-date {
+    display: inline-block;
+}
+
+.show-wrapper .etc-wrapper .view-date p {
+    color: gray;
+    font-size: 13px;
+    margin: 0;
+}
+
+.show-wrapper .etc-wrapper .view-point {
+    float: right;
+}
+
+.show-wrapper .etc-wrapper .view-point span {
+    color: #333;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.answer-wrapper, .choice-wrapper {
+    clear: both;
+    position: relative;
+    padding: 25px 29px;
+    margin-bottom: 10px;
+}
+
+.question {
+    position: relative;
+    display: inline-block;
+}
+
+.question .bb {
+    position: relative;
+    width: 100%;
+    float: left;
+    height: 400px;
+    box-sizing: content-box;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover; 
+    -o-background-size: cover; 
+}
+
+.question .question-span {
+    position: absolute;
+    top: 3px;
+}
+
+.question p {
+    margin: 0;
+    padding-left: 20px;
+    padding-right: 20px;
+    height: auto;
+    font-size: 16px;
+    line-height: 28px;
+}
+
+.answer {
+    margin-right: 20px;
+    margin-left: 20px;
+    padding-right: 20px;
+    padding-top: 20px;
+}
+
+.answer .answer-textarea {
+    overflow-x: hidden;
+    overflow-wrap: break-word;
+    height: 94px;
+    font-size: 16px;
+    line-height: 28px;
+    width: 100%;
+    overflow: hidden;
+    resize: none;
+    word-wrap: break-word;
+    border: 1px dashed;
+    background-color: rgb(243, 243, 243);
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 4px 9px;
+}
+
+
+
+.answer .answer-email {
+    position: relative;
+    font-size: 16px;
+    line-height: 28px;
+    width: 300px;
+    border: 1px dashed;
+    background-color: rgb(243, 243, 243);
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 4px 9px;
+}
+
+.button-wrapper {
+    clear: both;
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 10px;
+    padding: 0 30px 20px;
+    overflow: hidden;
+}
+
+.button-wrapper .submit-btn {
+    width: 300px;
+    font-size: 20px;
+    line-height: 50px;
+    background-color: #fff;
+    border: 1px solid #999;
+    height: 50px;
+    cursor: pointer;
+}
+
+.button-wrapper .submit-btn:hover {
+    background-color: #eee;
+}
+
+.button-wrapper .submit-btn:active {
+    border: none;   
+}
+
+@media screen and (max-width: 810px) {
+    .survey-container {
+        width: 100%;
+        margin: 54px 10px 54px 10px;
+    }
+}
+
+@media screen and (max-width: 720px) {
+    .answer-wrapper, .choice-wrapper {
+        padding: 25px 10px;
+        margin-bottom: 10px;
+    }
+}
+
+@media screen and (max-width: 440px) {
+    .choice-wrapper .answer-email {
+        width: 100%;
+    }
+
+    .button-wrapper .submit-btn {
+        width: 100%;
+    }
+}

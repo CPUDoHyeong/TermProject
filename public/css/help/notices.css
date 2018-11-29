@@ -1,0 +1,547 @@
+body {
+    /* 세로 스크롤 항상 보이게 하기 */
+    overflow-y: scroll;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+ul, ol {
+    list-style: none;
+    padding-left: 0;
+}
+
+.topnav {
+    top: 0;
+}
+
+.se-wrapper {
+    margin:0 auto;
+    position: relative;
+    top: 60px;
+    width: 100%;   
+}
+
+.header-nav-inner-wrapper {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: auto;
+}
+
+.ui-page-title {
+    font-weight: normal;
+    padding: 46px 0 18px 0;
+    height: 51px;
+    line-height: 51px;
+    display: block;
+    margin: 0 auto;
+    font-size: 30px;
+    text-align: left;
+}
+
+.main-nav ul {
+    float: left;
+    list-style: none;
+    list-style-image: none;
+    padding: 0;
+    margin: 0;
+}
+
+.main-nav ul li {
+    position: relative;
+    top: 1px;
+    float: left;
+    line-height: 40px;
+    font-size: 15px;
+    margin-right: 5px;
+    padding: 0 15px;
+}
+
+.main-nav ul li:hover {
+    border-bottom: 4px solid #92abda;
+}
+
+.main-nav ul.nav li a {
+    color: #666;
+    width: 100%;
+    display: inline-block;
+    height: 40px;
+    font-size: 15px;
+    line-height: 40px;
+}
+
+
+.main-nav ul.nav li.page-title.on {
+    border-bottom: 4px solid #345a9a;
+}
+
+.main-nav ul.nav li.page-title.on a {
+    color: #000;
+    font-weight: bold;
+}
+
+.content {
+    clear: both;
+    padding: 30px 0 100px;
+    position: relative;
+    border-top: 1px solid #ccc;
+}
+
+.contentbox {
+    border: 1px solid #cbcccc;
+    background-color: #fff;
+    margin-bottom: 10px;
+    width: 1200px;
+    margin: 0 auto 30px;
+    box-sizing: border-box;
+    box-shadow: 0px 1px 3px rgba(0,0,0,0.15);
+}
+
+/* privacy 부분 */
+.contentbox.notices-terms,
+.contentbox.notices-privacy {
+    padding: 40px 40px 70px;
+    position: relative;
+}
+
+.contentbox:last-child {
+    margin-bottom: 0;
+}
+
+
+.contentbox.notices-terms h2,
+.contentbox.notices-privacy h2 {
+    color: #333;
+    font-size: 17px;
+    line-height: 29px;
+    font-weight: bold;
+    margin: 0;
+    padding: 0 0 40px;
+}
+
+.contentbox.notices-terms p,
+.contentbox.notices-terms ol *,
+.contentbox.notices-privacy p,
+.contentbox.notices-privacy ol * {
+    color: #666;
+    font-size:  13px;
+    line-height: 23px;
+    margin: 0;
+}
+
+.contentbox.notices-terms ol,
+.contentbox.notices-privacy ol {
+    list-style: decimal;
+    margin: 0 0 0 40px;
+    padding: 0;
+}
+
+/* 공지사항 테이블 */
+table {
+    width: 100%;
+    table-layout: fixed;
+    border: 0;
+    /* 
+    표의 테두리와 셀의 테두리
+    사이의 간격을 없앤다.
+    */
+    border-collapse: collapse;
+}
+
+th {
+    background-color: #f1f2f4;
+    height: 40px;
+    vertical-align: middle;
+    font-size: 13px;
+    padding: 0;
+    border: 0;
+    font-weight: normal;
+}
+
+table .no {
+    width: 140px;
+    text-align: center;
+}
+
+table .created {
+    width: 170px;
+    text-align: center;
+    padding-right: 10px;
+}
+
+table .title a {
+    padding: 0;
+    color: #212121;
+}
+
+td {
+    background-color: #fff;
+    vertical-align: middle;
+    border-top: 1px solid #f0f0f0;
+    font-size: 13px;
+    line-height: 23px;
+    padding: 11px 0;
+    position: relative;
+}
+
+.write-btn-wrapper {
+    width: 1200px;
+    margin: 0 auto;
+    text-align: right;
+}
+
+/* 글 작성 버튼 css */
+.content .write-btn {
+    display: inline-block;
+    background: #fff;
+    border: 1px solid #345a9a;
+    color: #345a9a;
+    cursor: pointer;
+    height: 30px;
+    font-size: 13px;
+    line-height: 30px;
+    width: 100px;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.content .write-btn:hover {
+    color: #5a7cb6;
+    border-color: #5a7cb6;
+}
+
+/* pagination css */
+.pagination_div {
+    float: right;
+    position: relative;
+    left: -50%;
+}
+
+.pagination li{
+    float: left;
+    position: relative;
+    left: 50%;
+}
+
+.pagination a {
+    font-size: 13px;
+    color: black;
+    float: left;
+    padding: 8px 9px;
+    transition: background-color .3s;
+}
+
+.pagination span {
+    font-size: 13px;
+    color: black;
+    float: left;
+    padding: 8px 9px;
+    transition: background-color .3s;
+}
+
+.pagination .page-item.active {
+    background-color: #345a9a;
+    color: white;
+}
+
+.pagination a:hover:not(.active) {
+    background-color: #ddd;
+}
+
+.contentbox.about-company,
+.contentbox.contact {
+    padding: 0 40px;
+}
+
+.contentbox.about-company h2, 
+.contentbox.contact h2 {
+    color: #333;
+    font-size: 17px;
+    font-weight: bold;
+    margin: 0;
+    padding: 81px 0 40px;
+}
+
+.contentbox.about-company p {
+    font-size: 13px;
+    line-height: 23px;
+    margin-bottom: 19px;
+}
+.contentbox.contact p {
+    color: #666;
+    font-size: 13px;
+    line-height: 23px;
+    padding-bottom: 50px;
+    border-bottom: 1px solid #dedede;
+    margin-bottom: 30px;
+}
+
+.contentbox .contacts {
+    text-align: center;
+}
+
+.contentbox.contact dl {
+    width: 100%;
+    margin: 0;
+    text-align: center;
+}
+
+.contentbox.contact dt {
+    color: #333;
+    font-size: 13px;
+    line-height: 23px;
+    padding-bottom: 12px;
+    text-align: center;
+}
+
+.contentbox.contact dd {
+    color: #666;
+    font-size: 13px;
+    line-height: 23px;
+    text-align: center;
+    padding: 0 10px;
+    width: 60%;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 60px;
+}
+
+.contentbox.contact dd a {
+    color: #666;
+    display: block;
+    cursor: pointer;
+}
+
+.contentbox.contact #icon-img {
+    margin-top: 20px;
+}
+
+#support {
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 99;
+}
+
+#support .support-bg {
+    background-color: #000;
+    top: 0;
+    bottom: 0;
+    display: block;
+    left: 0;
+    opacity: .66;
+    position: absolute;
+    right: 0;
+}
+
+#support iframe {
+    position: absolute;
+    border: 2px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+    left: 48px;
+    top: 48px;
+    transform: scale(.8);
+    width: calc(100vw - 96px);
+    height: calc(100vh - 96px);
+}
+
+#support .close {
+    background-color: transparent;
+    right: 1px;
+    top: 4px;
+    opacity: 1;
+    cursor: pointer;
+    display: block;
+    width: 40px;
+    height: 40px;
+    outline: none;
+    position: fixed;
+
+}
+
+#support iframe {
+    /* 투명도가 0이 아니어야 보인다 */
+    opacity: 1;
+    /* 
+    iframe 창 확대 및 축소 
+    숫자가 커지면 확대되고
+    작아지면 축소된다.
+    */ 
+    transform: scale(1);
+}
+
+#support a:after,
+#support a:before {
+    background-color: #fff;
+    content: "";
+    display: block;
+    height: 3px;
+    left: 6px;
+    position: absolute;
+    top: 18px;
+    width: 28px;
+}
+
+#support a:before {
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+
+#support a:after {
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+/* 회사소개(about-compay) css 부분 */
+.contentbox.about-company {
+    padding-bottom: 70px;
+}
+
+.about-company li {
+    font-size: 13px;
+    line-height: 23px;
+    margin-bottom: 5px;
+}
+
+#main-container form {
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+
+/* width가 1200이상이면 드롭다운 메뉴를 숨김 */
+.navbar {
+    display: none;
+}
+
+/* 가로 1200px 이하로 갈 때 처리 */
+@media screen and (max-width : 1200px) {
+    .ui-page-title {
+        /* 상 우 하 좌 순서 */
+        padding: 15px 0 15px 10px;
+        height: 36px;
+        line-height: 36px;
+        display: block;
+        margin: 0 auto;
+        color: #000;
+        font-size: 21px;
+        text-align: left;
+    }
+
+    /* 기존의 nav를 안보이게 한다. */
+    #main-container .nav {
+        display: none;
+    }
+
+    /* 기존의 메뉴바를 없애고 드롭다운 메뉴바를 나타낸다.*/
+    .navbar {
+        display: block;
+        overflow: hidden;
+        background-color: #fff;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    
+    .dropdown {
+        float: left;
+        overflow: hidden;
+    }
+    
+    .dropdown .dropbtn {
+        text-align: left;
+        cursor: pointer;
+        font-size: 13px;    
+        border: none;
+        outline: none;
+        color: #000;
+        padding: 5px 0 5px 10px;
+        background-color: inherit;
+        font-family: inherit;
+        margin: 0 3px;
+        width: 100px;
+        background: url(../../img/help/icon-arrow-down.png)right 50% no-repeat;
+        
+    }
+    
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #fff;
+        width: auto;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+        padding: 5px 7px;
+        border: 1px solid #345a9a;
+        margin: 0 3px;
+    }
+    
+    .dropdown-content a {
+        float: none;
+        color: #666;
+        padding-right: 10px;
+        font-size: 13px;
+        line-height: 34px;
+        display: block;
+        text-align: left;
+        height: 34px;
+    }
+    
+    .dropdown-content a:hover {
+        font-weight: bold;
+    }
+    
+    .show {
+        display: block;
+    }
+
+    .content {
+        padding-top: 6px;
+    }
+
+    .contentbox {
+        width: auto;
+        margin: 0 5px;
+    }
+
+    table .no {
+        width: 15%;
+        min-width: 75px;
+    }
+
+    table .created {
+        width: 17%;
+        padding-right: 5px;
+    }
+
+    .write-btn-wrapper {
+        width: auto;
+        margin: 15px 5px 0 0;
+    }
+}
+
+/* 가로 842px 이하로 갈 때 처리 */
+@media screen and (max-width: 842px) {
+    #support iframe {
+        left: 0;
+        width: 100vw;
+    }
+}
+
+/* 가로 450px 이하로 갈 때 처리 */
+@media screen and (max-width: 450px) {
+    table td {
+        font-size: 11px;
+    }
+
+    table .no {
+        width: 70px;
+    }
+
+    table .created {
+        width: 60px;
+    }
+
+    .write-btn-wrapper .write-btn {
+        width: 70px;
+    }
+}

@@ -1,0 +1,218 @@
+.contentbox .tag-combo {
+    float: left;
+}
+
+.tag-combo .combo-main {
+    padding: 10px;
+    font-size: 13px;
+    width: 100px;
+    margin-right: 10px;
+}
+
+.contentbox .search-box {
+    float: left;
+    width: 300px;
+}
+
+.search-box .search-form {
+    margin-left: 0!important;
+    margin-bottom: 0!important;
+}
+
+form.search-form input[type=text] {
+    padding: 10px;
+    font-size: 13px;
+    border: 1px solid grey;
+    float: left;
+    width: 78%;
+    background: white;
+}
+
+form.search-form button {
+    float: left;
+    width: 40px;
+    padding: 10px;
+    background: #345a9a;
+    color: white;
+    font-size: 13px;
+    border: 1px solid grey;
+    border-left: none;
+    cursor: pointer;
+}
+
+form.search-form button:hover {
+    background: #345a9a;
+}
+
+form.search-form::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.contentbox .contentbox-content {
+    padding: 40px 10px 40px 10px;
+}
+
+/* 설문조사 목록 div */
+.survey-list {
+    width: 100%;
+}
+
+.survey-list ul {
+    
+}
+
+.survey-list li {
+    display: inline-block;
+    position: relative;
+    width: 30%;
+    padding-left: 1.5%;
+    padding-right: 1.5%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin: 0!important;
+    margin-bottom: 20px !important;
+}
+
+/* li 부분의 아래 선 */
+.survey-list li:after {
+    content: ' ';
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 10%;
+    width: 80%;
+    height: 1px;
+    background: #f1f2f4 !important;
+    zoom: 1;
+}
+
+.survey-list li:hover:after {
+    background: #345a9a!important;
+    transition: background-color .3s;
+}
+
+.survey-list li p {
+    line-height: 24px;
+    font-size: 14px;
+}
+
+/* 썸네일 셋팅 */
+.survey-list .img-box {
+    position: relative;
+    width: 70px;
+    float: left;
+    margin-right: 5%;
+    height: 70px;
+    box-sizing: content-box;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+
+}
+
+
+.img-box img {
+    display: inline-block;
+    border: 0 none;
+    vertical-align: top;
+    position: relative;
+    overflow: hidden;
+    width: 70px;
+    height: auto;
+    max-height: inherit;
+}
+
+.survey-list .text-box {
+    width: 67%;
+    float: left;
+    margin-right: 0;
+    box-sizing: content-box;
+    position: relative;
+}
+
+/* 분류 */
+.text-box .tag {
+    font-weight: 700;
+}
+
+/* 포인트 */
+.text-box .point {
+    position: absolute;
+    top : 0;
+    right: 0;
+    color : #345a9a;
+}
+
+/* 제목 */
+.text-box .title {
+    height: 40px;
+    line-height: 20px;
+    display: -webkit-box; 
+    display: -ms-flexbox; 
+    display: box; 
+    margin-top:5px;
+    margin-bottom:3px;
+    max-height:80px; 
+    overflow:hidden; 
+    vertical-align:top; 
+    text-overflow: ellipsis; 
+    word-break:break-all; 
+    -webkit-box-orient:vertical; 
+    -webkit-line-clamp:2;
+}
+
+/* 기간 */
+.text-box .date {
+    font-size: 13px;
+}
+
+
+
+/* 가로 1200px 이하로 갈 때 처리 */
+@media screen and (max-width : 1200px) {
+
+}
+
+/* 가로 968px 이하로 갈 때 처리 */
+@media screen and (max-width : 968px) {
+    .survey-list li {
+        width: 45%;
+        padding-left: 2.3%;
+        padding-right: 2.3%;
+    }
+}
+
+/* 가로 800px 이하로 갈 때 처리 */
+@media screen and (max-width : 800px) {
+
+}
+
+/* 가로 640px 이하로 갈 때 처리 */
+@media screen and (max-width : 680px) {
+    .survey-list li {
+        width: 94%;
+        padding-left: 3%;
+        padding-right: 3%;;
+        box-sizing: content-box;
+    }
+
+    .survey-list li:after {
+        left: 5%;
+        width: 90%;
+    }
+
+    .contentbox .search-box {
+        width: 60%;
+    }
+    
+    form.search-form input[type=text] {
+        width: 60%;
+    }
+}   
+
+/* 가로 450px 이하로 갈 때 처리 */
+@media screen and (max-width : 450px) {
+    
+}

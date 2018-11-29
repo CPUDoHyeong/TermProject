@@ -1,0 +1,250 @@
+/* 
+공지사항 화면, 업데이트 form, write form css
+작성 날짜 : 2018.11.03
+*/
+
+/* .contentbox.view {
+    clear: both;
+} */
+
+.contentbox-header {
+    background-color: #f1f2f4;
+    height: 40px;
+    padding: 0;
+}
+
+.contentbox-header span {
+    display: block;
+    float: left;
+    font-size: 13px;
+    height: inherit;
+    line-height: 40px;
+}
+
+.contentbox-header .write {
+    padding-left: 40px;
+    font-weight: bold;
+}   
+
+.contentbox-header .num-title {
+    padding-left: 40px;
+    font-weight: bold;
+}
+
+.contentbox-header .regtime {
+    float: right;
+    text-align: right;
+    width: 160px;
+    padding-right: 40px;
+}
+
+.contentbox-content {
+    padding: 50px 40px;
+    background-color: #fff;
+    font-size: 16px;
+    line-height: 28px;
+}
+
+.contentbox-content p {
+    font-size:13px;
+    line-height: 23px;
+}
+
+.notice-btns, .btn-group {
+    height: 35px;
+    width: 1200px;
+    margin: 0 auto;
+    padding-bottom: 25px;
+}
+
+.notice-btns .list-btn {
+    display: inline-block;
+    text-align: center;
+    background: #345a9a;
+    border: 1px solid #345a9a;
+    color: #fff;
+    height: 30px;
+    cursor: pointer;
+    font-size: 13px;
+    line-height: 30px;
+    width: 100px;
+    vertical-align: middle;
+}
+
+.notice-btns .list-btn:hover {
+    background: #5a7cb6;
+    border-color: #5a7cb6;
+}
+
+.notice-btns .modify-btn {
+    display: inline-block;
+    text-align: center;
+    background: #fff;
+    border: 1px solid #345a9a;
+    color: #345a9a;
+    cursor: pointer;
+    height: 30px;
+    font-size: 13px;
+    line-height: 30px;
+    width: 100px;
+    vertical-align: middle;
+}
+
+.notice-btns .modify-btn:hover {
+    color: #5a7cb6;
+    border-color: #5a7cb6;
+}
+
+.notice-btns .delete-btn {
+    display: inline-block;
+    text-align: center;
+    background: #f1f2f4;
+    border: 1px solid #f1f2f4;
+    color: rgb(35, 34, 36);
+    cursor: pointer;
+    height: 30px;
+    font-size: 13px;
+    line-height: 30px;
+    width: 100px;
+    vertical-align: middle;
+}
+
+.notice-btns .delete-btn:hover {
+    border: 1px solid #959799;
+    background: #fff;
+}
+
+/* write_form css */
+.content #write-form {
+    margin: 0;
+}
+
+.field-name {
+    display: inline-block;
+    font-size: 13px;
+    width: 187px;
+}
+
+#write-form li:nth-child(2) {
+    margin-bottom: 20px;
+}
+
+.user-input {
+    height: 28px;
+    width: 100%;
+    line-height: 28px;
+    font-size: 13px;
+    border: 1px solid #ccc;
+    padding: 0 5px;
+    box-sizing: border-box;
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing: border-box;
+}
+
+.content-input {
+    overflow-x: hidden;
+    overflow-wrap: break-word;
+    height: 94px;
+    overflow: hidden;
+    resize: none;
+    word-wrap: break-word;
+    line-height: 28px;
+    width: 100%;
+    font-size: 13px;
+    border: 1px solid #ccc;
+    padding: 0 5px;
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing: border-box;
+}
+
+.write-ok-btn {
+    background: #345a9a;
+    border: 1px solid #345a9a;
+    color: #fff;
+    display: inline-block;
+    height: 30px;
+    cursor: pointer;
+    font-size: 13px;
+    line-height: 30px;
+    width: 100px;
+    vertical-align: middle;
+    padding: 0;
+}
+
+.write-ok-btn:hover {
+    background: #5a7cb6;
+    border-color: #5a7cb6;
+}
+
+.cancel-btn {
+    display: inline-block;
+    text-align: center;
+    background: #fff;
+    border: 1px solid #345a9a;
+    color: #345a9a;
+    cursor: pointer;
+    height: 30px;
+    font-size: 13px;
+    line-height: 30px;
+    width: 100px;
+    vertical-align: middle;
+    box-sizing: border-box;
+}
+
+.cancel-btn:hover {
+    color: #5a7cb6;
+    border-color: #5a7cb6;
+}
+
+/* 가로 1200px 이하로 갈 때 처리 */
+@media screen and (max-width : 1200px) {
+    
+    .contentbox-header .num-title {
+        padding-left: 3%;
+    }
+    
+    .contentbox-header .regtime {
+        padding-right: 3%;
+    }
+
+    .contentbox-header .write {
+        padding-left: 3%;
+    }  
+
+    .contentbox-content {
+        padding: 3%;
+    }
+
+    .notice-btns,
+    .btn-group {
+        margin-top: 15px;
+        margin-left: 5px;
+    }
+}    
+
+/* 가로 800px 이하로 갈 때 처리 */
+@media screen and (max-width: 800px) {
+    
+
+}
+
+/* 가로 640px 이하로 갈 때 처리 */
+@media screen and (max-width: 640px) {
+}
+
+/* 가로 450px 이하로 갈 때 처리 */
+@media screen and (max-width: 450px) {
+    .notice-btns .list-btn,
+    .notice-btns .modify-btn,
+    .notice-btns .delete-btn {
+        width: 70px;
+    }
+
+    .btn-group .write-ok-btn,
+    .btn-group .cancel-btn {
+        width: 70px;
+    }
+}
+
