@@ -109,14 +109,23 @@ body {
 
 .question {
     position: relative;
-    display: inline-block;
+    text-align: center;
+}
+
+.question img {
+    max-width: 100%; /* 이미지의 최대사이즈 */
+    width /***/: auto; /* only IE8 */
+    height: auto;
+    
+    box-sizing: border-box;
+    
 }
 
 .question .bb {
     position: relative;
-    width: 100%;
+    max-width: 100%;
     float: left;
-    height: 400px;
+    height: 500px;
     box-sizing: content-box;
     background-size: cover;
     background-repeat: no-repeat;
@@ -215,6 +224,12 @@ body {
         padding: 25px 10px;
         margin-bottom: 10px;
     }
+
+    .question img {
+        padding-right: 20px;
+        padding-left: 20px;
+    }
+
 }
 
 @media screen and (max-width: 440px) {
@@ -224,5 +239,13 @@ body {
 
     .button-wrapper .submit-btn {
         width: 100%;
+    }
+
+    .show-wrapper .info p {
+        font-size: 14px;
+    }
+
+    .show-wrapper .etc-wrapper .view-point span {
+        font-size: 13px;
     }
 }

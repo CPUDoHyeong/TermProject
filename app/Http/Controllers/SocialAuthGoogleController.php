@@ -20,11 +20,8 @@ class SocialAuthGoogleController extends Controller
     public function callback()
     {
         try {
-            
-        
             $googleUser = Socialite::driver('google')->user();
             $existUser = User::where('email',$googleUser->email)->first();
-            
 
             if($existUser) {
                 Auth::loginUsingId($existUser->id);
@@ -38,10 +35,11 @@ class SocialAuthGoogleController extends Controller
                 $user->save();
                 Auth::loginUsingId($user->id);
             }
-            return redirect()->to('surveyBoard/whole_survey');
+            return redirect()->route('surveyBoard.whole_survey');
         } 
         catch (Exception $e) {
-            return $e->getMessage();
+            // return $e->getMessage();
+            return 'error';
         }
     }
 }

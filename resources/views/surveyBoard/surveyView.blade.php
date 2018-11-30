@@ -64,8 +64,9 @@
 
                             <div class="answer-wrapper">
                                 <div class="question">
-                                    <div class="bb" style="background-image:url({{ asset('img/slide1.jpg')}})">
-                                    </div>
+                                    <img src="{{ asset('img/mainimg.jpg') }}" />
+                                    <!-- <div class="bb" style="background-image:url({{ asset('img/slide1.jpg')}})">
+                                    </div> -->
                                 </div>
                                 <div class="answer">
                                     <textarea rows="3" cols="75" name="answer" class="answer-textarea" placeholder="답변을 적어주세요"></textarea>
