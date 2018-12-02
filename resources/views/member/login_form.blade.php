@@ -21,7 +21,7 @@
                             <h1>지금 시작해 보세요!</h1>
                             <ul class="oauth">
                                 <li>
-                                    <a href="#" class="facebook-connection">Facebook</a>
+                                    <a href="javascript:alert('현재 점검 중입니다.');" class="facebook-connection">Facebook</a>
                                 </li>
                                 <li>
                                     <a href="{{ url('/redirect') }}" class="google-connection">Google</a>

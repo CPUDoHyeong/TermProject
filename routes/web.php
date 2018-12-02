@@ -102,6 +102,9 @@ Route::get('surveyBoard/make_survey', [
 	'uses' => 'SurveyController@make_survey'
 ]);
 
+// 설문작성
+Route::get('create_survey', 'surveyController@create_survey');
+
 Route::get('surveyView', function () {
 	return view('surveyBoard.surveyView');
 });

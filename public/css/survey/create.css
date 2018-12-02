@@ -3,6 +3,13 @@ body {
     padding: 0;
 }
 
+ul {
+    list-style: none;
+    list-style-image: none;
+    padding: 0;
+    margin: 0;
+}
+
 *:focus {
     outline: none;
     outline-style: solid;
@@ -75,9 +82,9 @@ body {
 
 /* 시작일자 종료일자 설정 css */
 .show-wrapper .date {
-    
     display: block;
     padding: 5px 29px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .show-wrapper .date p {
@@ -86,17 +93,34 @@ body {
     line-height: 24px;
     color: #333;
     font-weight: 560;
-    margin: 0;
+}
+
+.show-wrapper .date .date-wrapper {
+    margin-left: 20px;
+    margin-right: 20px;
+    
+}
+
+.show-wrapper .date label {
+    font-size: 15px;
+    padding-right: 3%;
+}
+
+.show-wrapper .date input {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
 }
 
 .date .start-date {
     display: inline-block;
     width: 49%;
+    box-sizing: border-box;
 }
 
 .date .end-date {
     display: inline-block;
     width: 49%;
+    box-sizing: border-box;
 }
 
 .show-wrapper .etc-wrapper {
@@ -132,33 +156,22 @@ body {
     margin-bottom: 10px;
 }
 
-.question {
+.preview {
     position: relative;
     text-align: center;
     width: 100%;
+    padding-right: 20px;
+    padding-left: 20px;
+    box-sizing: border-box;
 }
 
-.question img {
+.preview img {
     max-width: 100%; /* 이미지의 최대사이즈 */
     width: auto;
     height: auto;
     max-height: 500px;
     box-sizing: border-box;
     
-}
-
-.question .bb {
-    position: relative;
-    max-width: 100%;
-    float: left;
-    height: 500px;
-    box-sizing: content-box;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
-    -webkit-background-size: cover;
-    -moz-background-size: cover; 
-    -o-background-size: cover; 
 }
 
 .question .question-span {
@@ -197,9 +210,13 @@ body {
     padding: 4px 9px;
 }
 
+.info .limit_block {
+    display: inline-block;
+}
 
 
-.answer .answer-email {
+
+.answer .answer-point, .limit-input {
     position: relative;
     font-size: 16px;
     line-height: 28px;
@@ -210,6 +227,80 @@ body {
     padding: 4px 9px;
 }
 
+/* 항목 list */
+.info .select {
+    padding-left: 20px;
+    padding-right: 20px; 
+    display: inline-block;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.info .select ul {
+    width: 100%;
+}
+
+.info .select li {
+    float: left;
+    width: 49%;
+}
+
+.info .select #item_ul li {
+    margin-bottom: 5px;
+}
+
+.info .select li:nth-child(2n+1) {
+    margin-right: 2%;
+}
+
+.info .select label {
+    display: inline-block;
+    border: 1px solid #999;
+    line-height: 28px;
+    font-size: 16px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 4px 9px;
+    margin-bottom: 5px;
+}
+
+.info .select .item {
+    line-height: 28px;
+    font-size: 16px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 4px 9px;
+}
+
+.info .select .plus {
+    clear: both;
+    position: relative;
+    text-align: center;
+    padding-top: 15px;
+}
+
+.info .select .plus .plus-btn, .delete-btn {
+    width: 130px;
+    font-size: 15px;
+    line-height: 35px;
+    background-color: #fff;
+    border: 1px solid #999;
+    height: 35px;
+    cursor: pointer;
+}
+
+.info .select .plus .plus-btn:hover, .delete-btn:hover {
+    background-color: #eee;
+}
+
+.info .select .plus .plus-btn:active .delete-btn:active {
+    border: none;   
+}
+
+/* end 항목 list */
+
+
+/* 하단 버튼 css */
 .button-wrapper {
     clear: both;
     text-align: center;
@@ -236,6 +327,8 @@ body {
 .button-wrapper .submit-btn:active {
     border: none;   
 }
+/* end 하단 버튼 css */
+
 
 @media screen and (max-width: 810px) {
     .survey-container {
@@ -254,22 +347,71 @@ body {
         padding-right: 20px;
         padding-left: 20px;
     }
-}
 
-@media screen and (max-width: 440px) {
-    .choice-wrapper .answer-email {
-        width: 100%;
+    .show-wrapper .info{
+        padding: 5px 10px;
+    }
+
+    .show-wrapper .date {
+        padding: 5px 10px;
     }
 
     .button-wrapper .submit-btn {
+        width: 40%;
+    }
+}
+
+@media screen and (max-width: 648px) {
+    /* .info .select li:nth-child(2n+1) {
+        margin-right: 0;
+    } */
+
+    .info .select #item_ul li {
         width: 100%;
     }
 
+    .show-wrapper .answer-point, .limit-input {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 564px) {
+}
+
+@media screen and (max-width: 440px) {
+
+
     .show-wrapper .info p {
         font-size: 14px;
+        font-weight: bold;
     }
 
     .show-wrapper .etc-wrapper .view-point span {
         font-size: 13px;
+    }
+
+    .show-wrapper .date p {
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    .show-wrapper .date label {
+        font-size: 13px;
+    }
+
+    .info .select label {
+        font-size: 13px;
+    }
+
+    .info .select .item {
+        font-size: 13px;
+    }
+
+    .info #limit, #entry {
+        font-size: 13px;
+    }
+
+    .info .select .plus .plus-btn, .delete-btn {
+        width: 40%;
     }
 }

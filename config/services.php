@@ -35,14 +35,14 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
     'google' => [
-        'client_id' => '453226793275-q6reesb4ssh4q3h11kf5pl160aik1t1d.apps.googleusercontent.com',
-        'client_secret' => '0IuLgF26-_1eW6t8zgwnf7HA',
-        'redirect' => 'http://dohyeong.site/callback',
+        'client_id' => '453226793275-qb8bd12820tq6492n8lt2rtrt3hjmfuh.apps.googleusercontent.com',
+        'client_secret' => 'ko6lASEuXPW12Eauaom7wh5G',
+        'redirect' => 'http://dohyeong.site/callback'
     ],
     'facebook' => [
         'client_id' => '329710751093434',
         'client_secret' => '06d71282f17e9e7a8e8b0b788d8d2cd1',
-        'redirect' => 'http://localhost:8000/callback',
+        'redirect' => 'http://dohyeong.site/callback',
     ],
     'github' => [
         'client_id' => env('GITHUB_ID'),

@@ -9,7 +9,7 @@
 @endsection
 
 @section('content')
-<link rel="stylesheet" href="{{ asset('css/user/user.css') }}">
+<link rel="stylesheet" href="{{ asset('css/user/user.css?d') }}">
     @if(session()->has('msg'))
         <script>
             alert("{{ session('msg') }}");

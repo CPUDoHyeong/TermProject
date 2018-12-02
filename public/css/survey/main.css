@@ -1,3 +1,7 @@
+.contentbox .contentbox-header {
+    height: 50px;
+}
+
 .contentbox .tag-combo {
     float: left;
 }
