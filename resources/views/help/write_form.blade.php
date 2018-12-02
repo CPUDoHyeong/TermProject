@@ -22,7 +22,7 @@
 
             <div class="contentbox-content">
                 <div>
-                    <input hidden name="writer" value="{{ Auth::user()->email }}}">
+                    <input hidden name="writer" value="{{ Auth::user()->email }}">
                 </div>
                 <ul>
                     <li>

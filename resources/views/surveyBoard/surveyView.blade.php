@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>e-survey 고객지원</title>
-    <link rel="stylesheet" href="{{ asset('css/survey/surveyView.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/survey/surveyView.css?df') }}">
     <script>
         var textarea;
         function init() {
@@ -65,29 +65,47 @@
                             <div class="answer-wrapper">
                                 <div class="question">
                                     <img src="{{ asset('img/mainimg.jpg') }}" />
-                                    <!-- <div class="bb" style="background-image:url({{ asset('img/slide1.jpg')}})">
-                                    </div> -->
-                                </div>
-                                <div class="answer">
-                                    <textarea rows="3" cols="75" name="answer" class="answer-textarea" placeholder="답변을 적어주세요"></textarea>
                                 </div>
                             </div>
 
                             <div class="choice-wrapper">
-                                <div class="question">
-                                    <p>
-                                        <strong>
-                                        의견에 대한 답변을 원하시면 회신 받으실 이메일 주소를 적어주세요 (선택)
-                                        </strong>   
-                                    </p>
-                                </div>
-                                <div class="answer">
-                                    <input type="email" name="mail" placeholder="이메일을 적어주세요" class="answer-email">
+                                <div class="ul-wrapper">
+
+                                    <ul>
+
+                                        <li>
+                                            <!-- 단일 선택 -->
+                                            <label for="item1"><input type="radio" name="type" value="single" id="item1"/>선택지1</label>
+                                        </li>
+
+                                        <li>
+                                            <!-- 복수 선택 -->
+                                        <label for="item2"><input type="radio" name="type" value="plural" id="item2"/>선택지2</label>
+                                        </li>
+
+                                        <li>
+                                            <!-- 복수 선택 -->
+                                        <label for="item2"><input type="radio" name="type" value="plural" id="item2"/>선택지2</label>
+                                        </li>
+
+                                        <li>
+                                            <!-- 복수 선택 -->
+                                        <label for="item2"><input type="radio" name="type" value="plural" id="item2"/>선택지2</label>
+                                        </li>
+
+                                        <li>
+                                            <!-- 복수 선택 -->
+                                        <label for="item2"><input type="radio" name="type" value="plural" id="item2"/>선택지2</label>
+                                        </li>
+
+                                        
+                                    </ul>
                                 </div>
                             </div>
 
                             <div class="button-wrapper">
-                                <button class="submit-btn" name="button" type="submit">문의하기</button>
+                                <button class="submit-btn" name="button" type="submit">참여하기</button>
+                                <input class="submit-btn" type="button" value="결과보기" onclick="confirm_click()">
                             </div>
                         </div>
                     </form>

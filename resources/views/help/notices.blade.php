@@ -32,7 +32,7 @@
                         <tr>
                             <td class="no">{{ $row["id"]}}</td>
                             <td class="title">
-                                <a href="help/view/{{$row["id"]}}">{{ $row["title"]}}</a>
+                                <a href="help/view/{{ $row['id'] }}">{{ $row["title"]}}</a>
                             </td>
                             <td class="created">{{ $row["regtime"]}}</td>
                         </tr>

@@ -3,6 +3,13 @@ body {
     padding: 0;
 }
 
+ul {
+    list-style: none;
+    list-style-image: none;
+    padding: 0;
+    margin: 0;
+}
+
 *:focus {
     outline: none;
     outline-style: solid;
@@ -132,6 +139,10 @@ body {
     margin-bottom: 10px;
 }
 
+.answer-wrapper {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
 .question {
     position: relative;
     text-align: center;
@@ -197,6 +208,36 @@ body {
     padding: 4px 9px;
 }
 
+/* item css */
+.choice-wrapper .ul-wrapper {
+    width: 100%;
+    box-sizing: border-box;
+    display: inline-block;
+}
+
+.choice-wrapper .ul-wrapper ul {
+    width: 100%;
+}
+
+.choice-wrapper .ul-wrapper li {
+    float: left;
+    width: 49%;
+}
+
+.choice-wrapper .ul-wrapper li:nth-child(2n+1) {
+    margin-right: 2%;
+}
+
+.choice-wrapper .ul-wrapper label {
+    display: inline-block;
+    border: 1px solid #999;
+    line-height: 28px;
+    font-size: 16px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 4px 9px;
+    margin-bottom: 5px;
+}
 
 
 .answer .answer-email {
@@ -213,7 +254,7 @@ body {
 .button-wrapper {
     clear: both;
     text-align: center;
-    margin-top: 50px;
+    margin-top: 20px;
     margin-bottom: 10px;
     padding: 0 30px 20px;
     overflow: hidden;
@@ -250,9 +291,27 @@ body {
         margin-bottom: 10px;
     }
 
+    .choice-wrapper .ul-wrapper {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
     .question img {
         padding-right: 20px;
         padding-left: 20px;
+    }
+
+    .button-wrapper .submit-btn {
+        width: 40%;
+    }
+}
+
+@media screen and (max-width: 648px) {
+
+    
+
+    .choice-wrapper .ul-wrapper li {
+        width: 100%;
     }
 }
 
@@ -270,6 +329,10 @@ body {
     }
 
     .show-wrapper .etc-wrapper .view-point span {
+        font-size: 13px;
+    }
+
+    .choice-wrapper .ul-wrapper label {
         font-size: 13px;
     }
 }

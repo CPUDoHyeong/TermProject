@@ -7,6 +7,9 @@
     <title>e-survey 고객지원</title>
     <link rel="stylesheet" href="{{ asset('css/survey/create.css?xdddddddf') }}">
 
+    <!-- favicon -->
+    <link rel="shortcut icon" href="{{ asset('img/favicon.ico') }}">
+
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 </head>
