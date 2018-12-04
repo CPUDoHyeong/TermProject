@@ -103,8 +103,15 @@ Route::get('surveyBoard/make_survey', [
 ]);
 
 // 설문작성
-Route::get('create_survey', 'surveyController@create_survey');
+Route::get('create_survey_form', 'surveyController@create_survey_form');
 
+// 설문제출
+Route::post('create_survey', [
+	'as' => 'surveyBoard.create_survey',
+	'uses' => 'SurveyController@create_survey'
+]);
+
+// 설문상세보기
 Route::get('surveyView', function () {
 	return view('surveyBoard.surveyView');
 });

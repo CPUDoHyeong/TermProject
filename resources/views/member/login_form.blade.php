@@ -27,7 +27,7 @@
                                     <a href="{{ url('/redirect') }}" class="google-connection">Google</a>
                                 </li>
                             </ul>
-                            <input autofocus="autofocus" class="login-id" name="email" placeholder="이메일" size="50" type="email" required>
+                            <input autofocus="autofocus" class="login-id" name="email" placeholder="이메일" size="50" type="email" required value="{{ old('email') }}">
 
                             <input class="login-pw" name="password" placeholder="비밀번호" size="30" type="password" required>
 
@@ -48,9 +48,9 @@
                         <fieldset>
                             <legend>sign-up form</legend>
                             <h2>회원이 아니신가요? 가입은 무료입니다.</h2>
-                            <input id="user_name" name="name" placeholder="이름" size="50" type="text" required>
+                            <input id="user_name" name="name" placeholder="이름" size="50" type="text" required value="{{ old('name') }}">
 
-                            <input id="user_id" name="email" placeholder="이메일" size="50" type="email" required>
+                            <input id="user_id" name="email" placeholder="이메일" size="50" type="email" required value="{{ old('email') }}">
 
                             <input id="user_pw" name="password" placeholder="비밀번호" size="30" type="password" required>
 

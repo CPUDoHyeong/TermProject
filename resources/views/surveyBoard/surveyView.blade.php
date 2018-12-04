@@ -72,7 +72,7 @@
                                 <div class="ul-wrapper">
 
                                     <ul>
-
+                                        <!-- 만약 0이라면 radio버튼으로, 1이라면 checkbox 버튼으로-->
                                         <li>
                                             <!-- 단일 선택 -->
                                             <label for="item1"><input type="radio" name="type" value="single" id="item1"/>선택지1</label>
@@ -85,20 +85,18 @@
 
                                         <li>
                                             <!-- 복수 선택 -->
-                                        <label for="item2"><input type="radio" name="type" value="plural" id="item2"/>선택지2</label>
+                                        <label for="item3"><input type="radio" name="type" value="plural" id="item3"/>선택지2</label>
                                         </li>
 
                                         <li>
                                             <!-- 복수 선택 -->
-                                        <label for="item2"><input type="radio" name="type" value="plural" id="item2"/>선택지2</label>
+                                        <label for="item4"><input type="radio" name="type" value="plural" id="item4"/>선택지2</label>
                                         </li>
 
                                         <li>
                                             <!-- 복수 선택 -->
-                                        <label for="item2"><input type="radio" name="type" value="plural" id="item2"/>선택지2</label>
+                                        <label for="item5"><input type="radio" name="type" value="plural" id="item5"/>선택지5</label>
                                         </li>
-
-                                        
                                     </ul>
                                 </div>
                             </div>

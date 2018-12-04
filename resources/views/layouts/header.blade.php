@@ -18,7 +18,7 @@
             <div class="user-dropdown">
                 <button class="user-dropbtn" id="user-nav">{{ Auth::user()->name }}</button>
                 <div class="user-dropdown-content" id="user-myDropdown">
-                    <a href="{{ url('create_survey') }}">설문 작성</a>
+                    <a href="{{ url('create_survey_form') }}">설문 작성</a>
                     <a href="{{ url('help') }}">도움말</a>
                     <a href="{{ route('user') }}">설정</a>
                     <a class="logout-btn" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">로그아웃</a>

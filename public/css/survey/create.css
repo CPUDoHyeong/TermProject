@@ -192,6 +192,17 @@ ul {
     margin-right: 20px;
     margin-left: 20px;
     padding-right: 20px;
+    position: relative;
+}
+
+.error {
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+.form-error {
+    color: red;
+    font-size: 14px;
 }
 
 .answer .answer-textarea {
@@ -208,6 +219,14 @@ ul {
     background-color: rgb(243, 243, 243);
     font-family: Arial, Helvetica, sans-serif;
     padding: 4px 9px;
+}
+
+.answer #counter {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #999;
 }
 
 .info .limit_block {
@@ -379,7 +398,9 @@ ul {
 }
 
 @media screen and (max-width: 440px) {
-
+    .title-wrapper .combo {
+        width: 120px;
+    }
 
     .show-wrapper .info p {
         font-size: 14px;
@@ -413,5 +434,9 @@ ul {
 
     .info .select .plus .plus-btn, .delete-btn {
         width: 40%;
+    }
+
+    .form-error {
+        font-size: 13px;
     }
 }

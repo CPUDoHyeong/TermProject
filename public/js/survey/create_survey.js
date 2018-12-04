@@ -11,6 +11,33 @@ function resize() {
     textarea.style.height = (12+textarea.scrollHeight) + "px";
 }
 
+// textarea 글자 수 표시
+$('#content').keyup(function (e) {
+    var content = $(this).val();
+    $('#counter').html(content.length + '/100');
+});
+$('#content').keyup();
+
+// 포인트와 참여인원제한 input에 숫자만 입력받기
+function onlyNumber(event) {
+    event = event || window.event;
+    var keyID = (event.which) ? event.which : event.keyCode;
+    if ( (keyID >= 48 && keyID <= 57) || (keyID >= 96 && keyID <= 105) || keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 ) 
+        return;
+    else
+        return false;
+}
+
+// 키보드가 업 되었을 때 체크하여 삭제한다.
+function removeChar(event) {
+    event = event || window.event;
+    var keyID = (event.which) ? event.which : event.keyCode;
+    if ( keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 ) 
+        return;
+    else
+        event.target.value = event.target.value.replace(/[^0-9]/g, "");
+}
+
 // 사용자가 파일업로드를 했을 때, 이미지 파일인지 체크한다.
 // 이미지만 받을 수 있도록 제한하기위함.
 function fileCheck(obj) {
@@ -44,6 +71,7 @@ function fileCheck(obj) {
     }
 }
 
+// 항목 추가 이벤트
 function addItem() {
     item_ul = document.getElementById("item_ul");
     item_li = document.createElement('li');

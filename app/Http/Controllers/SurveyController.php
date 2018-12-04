@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Foundation\Validation\ValidatesRequests;
 
 class SurveyController extends Controller
 {
@@ -28,7 +30,32 @@ class SurveyController extends Controller
         return view('surveyBoard.make_survey');
     }
 
-    public function create_survey() {
-        return view('surveyBoard.create_survey');
+    public function create_survey_form() {
+        return view('surveyBoard.create_survey_form');
+    }
+
+    public function create_survey(Request $request) {
+
+        $rules = [
+            'thema' => 'bail|required',
+            'title' => 'bail|required|max:100',
+            'start_date' => 'bail|required|timezone',
+            'end_date' => 'bail|required|timezone',
+            'point' => 'bail|required|integer',
+            'limit' => 'bail|required',
+            'limit_count' => 'bail|required',
+            'img_url' => 'bail|required',
+            'item_type' => 'bail|reqruied',
+            // 항목들 처리는 어떻게 ??
+        ];
+
+        $validator = \Validator::make($request->all(), $rules);
+
+        // fails는 유효성 검사를 통과하지 못하면 true를 반환한다.
+        if($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
+        } else {
+            return $request->all();
+        }
     }
 }

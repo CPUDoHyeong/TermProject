@@ -37,7 +37,7 @@ return [
     'google' => [
         'client_id' => '453226793275-qb8bd12820tq6492n8lt2rtrt3hjmfuh.apps.googleusercontent.com',
         'client_secret' => 'ko6lASEuXPW12Eauaom7wh5G',
-        'redirect' => 'http://dohyeong.site/callback'
+        'redirect' => 'http://www.dohyeong.site/callback'
     ],
     'facebook' => [
         'client_id' => '329710751093434',
