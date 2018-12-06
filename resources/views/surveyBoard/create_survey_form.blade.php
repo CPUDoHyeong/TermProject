@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>e-survey 고객지원</title>
-    <link rel="stylesheet" href="{{ asset('css/survey/create.css?xdddddddddf') }}">
+    <link rel="stylesheet" href="{{ asset('css/survey/create.css?xddddddddddf') }}">
 
     <!-- favicon -->
     <link rel="shortcut icon" href="{{ asset('img/favicon.ico') }}">
@@ -18,7 +18,7 @@
     <div class="bg">
         <div class="wrapper">
             <div class="survey-container">
-                <form action="{{ route('surveyBoard.create_survey') }}" method="post">
+                <form action="{{ route('surveyBoard.create_survey') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="survey-title">
                         <div class="title-wrapper">
@@ -64,7 +64,7 @@
                                 ※ 질문 입력
                                 </p>
                                 <div class="answer">
-                                    <textarea id="content" rows="3" cols="75"  maxlength="100" name="title" class="answer-textarea" placeholder="질문을 입력해 주세요(최대 100자)" >{{ old('title')}}</textarea>
+                                    <textarea id="content" rows="3" cols="75"  maxlength="100" name="title" class="answer-textarea" placeholder="질문을 입력해 주세요(최대 100자)" required>{{ old('title')}}</textarea>
                                     <span id="counter">###</span>
                                     
                                 </div>
@@ -82,15 +82,23 @@
                                     <div class="start-date">
                                         <label>시작일 </label>
                                         <input name="start_date" type="date" value="{{ old('start_date')}}">
-                                        {!! $errors->first('title', '<span class="form-error">:message</span>') !!}
+                                        {!! $errors->first('start_date', '<span class="form-error">:message</span>') !!}
                                         
                                     </div>
 
                                     <div class="end-date">
                                         <label>종료일 </label>
                                         <input name="end_date" type="date" value="{{ old('end_date')}}">
-                                        {!! $errors->first('title', '<span class="form-error">:message</span>') !!}
+                                        {!! $errors->first('end_date', '<span class="form-error">:message</span>') !!}
                                     </div>
+                                </div>
+
+                                <div class="error">
+                                    @if(session()->has('date_err'))
+                                        <span class="form-error">
+                                            {{ session('date_err') }}
+                                        </span>
+                                    @endif
                                 </div>
                                 
                             </div>
@@ -105,7 +113,7 @@
                                 </div>
 
                                 <div class="error">
-                                    {!! $errors->first('title', '<span class="form-error">:message</span>') !!}    
+                                    {!! $errors->first('point', '<span class="form-error">:message</span>') !!}    
                                 </div>
 
                                 
@@ -117,7 +125,7 @@
                                 </p>
 
                                 <!-- 제한 없음 클릭시 input disable, 직접 입력 클릭 시 able-->
-                                <label id="limit"><input type="radio" name="limit" value="limit" id="limit"/>제한 없음</label>
+                                <label id="limit"><input type="radio" name="limit" value="non_limit" id="limit"/>제한 없음</label>
                                 <label id="entry"><input type="radio" name="limit" value="entry" id="entry" checked="checked"/>직접 입력</label>
 
                                 <div class="answer">
@@ -125,7 +133,12 @@
                                 </div>
 
                                 <div class="error">
-                                    {!! $errors->first('title', '<span class="form-error">:message</span>') !!}    
+                                    {!! $errors->first('limit', '<span class="form-error">:message</span>') !!}   
+                                    @if(session()->has('limit_err'))
+                                        <script>
+                                            alert("{{ session('limit_err') }}");
+                                        </script>
+                                    @endif
                                 </div>
                             </div>
 
@@ -133,16 +146,19 @@
                                 <p>
                                 ※ 이미지 업로드
                                 </p>
-                                <div class="answer">
+                                <div class="answer file-wrapper">
                                     <!-- 이미지 파일만 제한 -->
-                                    <input type="file" name="img_url" onchange="fileCheck(this);" accept="image/gif, image/jpeg, image/png"> 
+                                    <input type="file" name="img_url" onchange="fileCheck(this);" accept="image/gif, image/jpeg, image/png" id="upload_file"> 
+                                    <input type="button" class="delete_btn" value="삭제" onclick="delete_file()">
                                 </div>
+
+                                <!-- 설정한 이미지를 보여주는 div -->
                                 <div class="preview">
                                     <img id="survey_img">
                                 </div>
 
                                 <div class="error">
-                                    {!! $errors->first('title', '<span class="form-error">:message</span>') !!}    
+                                    {!! $errors->first('img_url', '<span class="form-error">:message</span>') !!}    
                                 </div>
                             </div>
 
@@ -168,27 +184,28 @@
                                     <ul>
                                         <li>
                                             <!-- 단일 선택 -->
-                                            <label id="ck1"><input type="radio" name="item_type" value="single" id="ck1">단일 선택</label>
+                                            <label id="ck1"><input type="radio" name="item_type" value="single" id="ck1" @if(old('item_type')) checked @endif>단일 선택</label>
                                         </li>
 
                                         <li>
                                             <!-- 복수 선택 -->
-                                            <label id="ck2"><input type="radio" name="item_type" value="plural" id="ck2"/>복수 선택</label>
+                                            <label id="ck2"><input type="radio" name="item_type" value="plural" id="ck2" @if(old('item_type')) checked @endif>복수 선택</label>
                                         </li>
                                     </ul>
                                     <div class="item_list">
                                         <ul id="item_ul">
                                             <li>
-                                                <input type="text" class="item" name="item1" placeholder="항목1">
+                                                <input type="text" class="item" name="item[]" placeholder="항목1" required value="{{ old('item1')}}">
                                             </li>
+
                                             <li>
-                                                <input type="text" class="item" name="item2" placeholder="항목2">
+                                                <input type="text" class="item" name="item[]" placeholder="항목2" required value="{{ old('item1')}}">
                                             </li>
                                         </ul>
                                     </div>
 
                                     
-                                        {!! $errors->first('title', '<span class="form-error">:message</span>') !!}    
+                                        {!! $errors->first('item_type', '<span class="form-error">:message</span>') !!}    
                                     
 
                                     <div class="plus">
@@ -210,7 +227,7 @@
     </div>
 
     <!-- js -->
-    <script type="text/javascript" src="{{ asset('js/survey/create_survey.js?d') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/survey/create_survey.js?sdd') }}"></script>
     <script type="text/javascript">
 
         // 작성취소 클릭 시 

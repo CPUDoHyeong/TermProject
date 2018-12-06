@@ -158,6 +158,9 @@
         }
     </script>
 
+    <!-- js -->
+    <script src="{{ asset('js/help/help_nav.js') }}"></script>
+
 @endsection
 
 @section('footer')

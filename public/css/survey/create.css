@@ -156,6 +156,10 @@ ul {
     margin-bottom: 10px;
 }
 
+.file-wrapper {
+    margin-bottom: 10px;
+}
+
 .preview {
     position: relative;
     text-align: center;

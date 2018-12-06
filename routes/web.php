@@ -112,9 +112,10 @@ Route::post('create_survey', [
 ]);
 
 // 설문상세보기
-Route::get('surveyView', function () {
-	return view('surveyBoard.surveyView');
-});
+Route::get('surveyView', [
+	'as' => 'surveyView',
+	'uses' => 'SurveyController@surveyView'
+]);
 
 // 로그인 화면
 Route::get('member', [

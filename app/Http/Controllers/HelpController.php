@@ -58,7 +58,7 @@ class HelpController extends Controller
 
     // 글 작성 submit 버튼 클릭 시
     public function write(Request $request) {
-        // DB에 삽입
+        // 값 가져오기
         $writer = $request->writer;
         $title = $request->title;
         $content = $request->content;

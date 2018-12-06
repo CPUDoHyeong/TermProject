@@ -71,6 +71,22 @@ function fileCheck(obj) {
     }
 }
 
+// 사진제거
+function delete_file() {
+    var file = document.getElementById('upload_file');
+
+    // 파일이 선택되어 있으면 체크한다.
+    if(file.files && file.files[0]) {
+
+        // 먼저 이미지를 제거하고
+        document.getElementById('survey_img').setAttribute('src', '');
+
+        // 파일 선택한것도 없애준다.
+        file.value='';
+    }
+}
+
+
 // 항목 추가 이벤트
 function addItem() {
     item_ul = document.getElementById("item_ul");
@@ -85,8 +101,9 @@ function addItem() {
     li_length = item_ul.childElementCount;
     for(i = 0; i < li_length; i++) {
         replace_input = item_ul.children[i].getElementsByTagName("input")[0];
-        replace_input.setAttribute('name', 'item' + (i + 1));
+        replace_input.setAttribute('name', 'item[]');
         replace_input.setAttribute('placeholder', '항목' + (i + 1));
+        replace_input.setAttribute('required', 'required');
     }
 
 }
@@ -103,15 +120,20 @@ function deleteItem() {
 
 // 참여 인원에서 제한 없음과 직접 입력 클리시 이벤트 처리
 $("input[name=limit]").change(function() {
+    
     var radioValue = $(this).val();
-    if(radioValue == "limit") {
-        $('.limit-input').attr("readonly", true).attr("disabled", false);
+    if(radioValue == "non_limit") {
+        
+        $('.limit-input').attr("readonly", true);
         $('.limit-input').css("background-color", "rgb(200, 200, 200)");
         $('.limit-input').css("cursor", "default");
-        $
+        $('.limit-input').attr("value", "제한 없음");
+        
     } else if(radioValue == "entry") {
-        $('.limit-input').attr("readonly", false).attr("disabled", false);
+        
+        $('.limit-input').attr("readonly", false);
         $('.limit-input').css("background-color", "rgb(243, 243, 243)");
         $('.limit-input').css("cursor", "auto");
+        $('.limit-input').attr("value", "");
     }
 });

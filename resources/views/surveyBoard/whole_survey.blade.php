@@ -15,6 +15,11 @@
 <div class="content">
     <div class="contentbox">
         <div class="contentbox-header">
+            @if(session()->has('msg'))
+                <script>
+                    alert("{{ session('msg') }}");
+                </script>
+            @endif
             <div class="tag-combo">
                 <select class="combo-main" name=''>
                     <option value=''> 전체 </option>

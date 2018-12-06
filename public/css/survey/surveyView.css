@@ -1,6 +1,7 @@
 body {
     margin: 0;
     padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 ul {
@@ -50,14 +51,10 @@ ul {
 
 .title-wrapper {
     padding: 10px 29px;
-    
 }
 
-.title-wrapper .combo {
-    font-size: 14px;
-    width: 150px;
-    height: 40px;
-    font-weight: bold;
+.title-wrapper h1 {
+    font-size: 20px;
 }
 
 .hidden-data {
@@ -74,7 +71,7 @@ ul {
 
 .show-wrapper .info p {
     height: auto;
-    font-size: 16px;
+    font-size: 20px;
     line-height: 24px;
     color: #333;
     font-weight: 560;
@@ -127,7 +124,7 @@ ul {
 }
 
 .show-wrapper .etc-wrapper .view-point span {
-    color: #333;
+    color: #345a9a;
     font-size: 15px;
     font-weight: bold;
 }
@@ -308,8 +305,6 @@ ul {
 
 @media screen and (max-width: 648px) {
 
-    
-
     .choice-wrapper .ul-wrapper li {
         width: 100%;
     }
@@ -320,12 +315,8 @@ ul {
         width: 100%;
     }
 
-    .button-wrapper .submit-btn {
-        width: 100%;
-    }
-
     .show-wrapper .info p {
-        font-size: 14px;
+        font-size: 16px;
     }
 
     .show-wrapper .etc-wrapper .view-point span {
