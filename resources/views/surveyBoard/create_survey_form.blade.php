@@ -195,11 +195,11 @@
                                     <div class="item_list">
                                         <ul id="item_ul">
                                             <li>
-                                                <input type="text" class="item" name="item[]" placeholder="항목1" required value="{{ old('item1')}}">
+                                                <input type="text" class="item" name="item[]" placeholder="항목1" required value="{{ old('item1')}}" onkeydown="return rule(event)">
                                             </li>
 
                                             <li>
-                                                <input type="text" class="item" name="item[]" placeholder="항목2" required value="{{ old('item1')}}">
+                                                <input type="text" class="item" name="item[]" placeholder="항목2" required value="{{ old('item1')}}" onkeydown="return rule(event)">
                                             </li>
                                         </ul>
                                     </div>
@@ -227,7 +227,7 @@
     </div>
 
     <!-- js -->
-    <script type="text/javascript" src="{{ asset('js/survey/create_survey.js?sdd') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/survey/create_survey.js?sdds') }}"></script>
     <script type="text/javascript">
 
         // 작성취소 클릭 시 

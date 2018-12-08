@@ -84,6 +84,18 @@ Route::get('surveyBoard/whole_survey', [
 	'uses' => 'SurveyController@whole_survey'
 ]);
 
+// 설문조사 메인페이지에서 조건주어서 검색했을 때 ajax처리
+Route::post('surveyBoard/search_survey', [
+	'as' => 'search_survey',
+	'uses' => 'SurveyController@search_survey'
+]);
+
+// 설문조사 페이지네이션 ajax 처리
+Route::get('surveyBoard/whole_survey/ajax', [
+	'as' => 'surveyBoard.ajax',
+	'uses' => 'SurveyController@page_ajax'
+]);
+
 // 진행중인 설문조사
 Route::get('surveyBoard/on_survey', [
 	'as' => 'surveyBoard.on_survey',
@@ -96,25 +108,31 @@ Route::get('surveyBoard/off_survey', [
 	'uses' => 'SurveyController@off_survey'
 ]);
 
-// 설문작성
-Route::get('surveyBoard/make_survey', [
-	'as' => 'surveyBoard.make_survey',
-	'uses' => 'SurveyController@make_survey'
+// 내가 작성한 설문 보기
+Route::get('surveyBoard/my_survey', [
+	'as' => 'surveyBoard.my_survey',
+	'uses' => 'SurveyController@my_survey'
 ]);
 
 // 설문작성
 Route::get('create_survey_form', 'surveyController@create_survey_form');
 
-// 설문제출
+// 설문작성 처리
 Route::post('create_survey', [
 	'as' => 'surveyBoard.create_survey',
 	'uses' => 'SurveyController@create_survey'
 ]);
 
-// 설문상세보기
-Route::get('surveyView', [
-	'as' => 'surveyView',
+// 설문 상세 보기
+Route::get('surveyView/{survey_id}', [
+	'as' => 'surveyView', 
 	'uses' => 'SurveyController@surveyView'
+]);
+
+// 설문참여 처리
+Route::post('surveyBoard/join_survey', [
+	'as' => 'join_survey',
+	'uses' => 'SurveyController@join_survey'
 ]);
 
 // 로그인 화면
@@ -165,6 +183,15 @@ Route::get('social/{provider}', [
 	'as' => 'social.login',
 	'uses' => 'SocialAuthGithubController@execute',
 ]);
+
+
+
+
+
+
+
+
+
 
 
 
@@ -246,11 +273,11 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-// Route::get('ajax', function() {
-// 	return view('message');
-// });
+Route::get('ajax', function() {
+	return view('message');
+});
 
-// Route::post('/getmsg', 'AjaxController@index');
+Route::post('/getmsg', 'AjaxController@index');
 
 // Route::get('test', function() {
 // 	return view('test');

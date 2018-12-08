@@ -11,7 +11,7 @@
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/user/user.css') }}">
 <link rel="stylesheet" href="{{ asset('css/survey/main.css')}}">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <div class="content">
     <div class="contentbox">
         <div class="contentbox-header">
@@ -20,178 +20,135 @@
                     alert("{{ session('msg') }}");
                 </script>
             @endif
-            <div class="tag-combo">
-                <select class="combo-main" name=''>
-                    <option value=''> 전체 </option>
-                    <option value=''>스포츠</option>
-                    <option value=''>사회</option>
-                    <option value=''>뷰티</option>
-                    <option value=''>IT</option>
-                    <option value=''>방송</option>
-                    <option value=''>음식</option>
-                    <option value=''>여행</option>
-                    <option value=''>건강</option>
-                    <option value=''>취미</option>
-                    <option value=''>육아</option>
-                    <option value=''>반려</option>
-                    <option value=''>금융</option>
-                    <option value=''>사랑</option>
-                    <option value=''>해외</option>
-                    <option value=''>교육</option>
-                    <option value=''>생활</option>
-                    <option value=''>영화</option>
-                    <option value=''>음악</option>
-                    <option value=''>기타</option>
-                </select>
-            </div>
-            <div class="search-box">
-                <form class="search-form"  action="">
-                    <input type="text" placeholder="검색어 입력" name="search2" autofocus="true">
-                    <button type="submit"><i class="fa fa-search"></i></button>
-                </form>
-            </div>
-        </div>
 
+            <!-- 검색 form -->
+            <!-- <form class="search-form" method="post"> -->
+                
+            <div>
+                <div class="tag-combo">
+                    <select class="combo-main" id="themaCombo" name='thema'>
+                        <option value=''> 전체 </option>
+                        <option value='sport'>스포츠</option>
+                        <option value='social'>사회</option>
+                        <option value='beauty'>뷰티</option>
+                        <option value='it'>IT</option>
+                        <option value='brad'>방송</option>
+                        <option value='food'>음식</option>
+                        <option value='travel'>여행</option>
+                        <option value='health'>건강</option>
+                        <option value='hobby'>취미</option>
+                        <option value='kid'>육아</option>
+                        <option value='animal'>반려</option>
+                        <option value='bank'>금융</option>
+                        <option value='love'>사랑</option>
+                        <option value='foreign'>해외</option>
+                        <option value='edu'>교육</option>
+                        <option value='life'>생활</option>
+                        <option value='movie'>영화</option>
+                        <option value='music'>음악</option>
+                        <option value='etc'>기타</option>
+                    </select>
+                </div>
+
+                <div class="search-box">
+                    <input type="text" placeholder="검색어 입력" name="search_val" autofocus="true" id="search">
+                    <button id="search_btn"><i class="fa fa-search"></i></button>
+                </div>
+            </div>
+            <!-- </form> -->
+
+            <!-- 검색 조건 jquery ajax -->
+            <script>
+                $(document).ready(function() {
+                    $('#search_btn').click(function(){
+                        $.ajax({
+                            url: "{{ route('search_survey') }}",
+                            method: "POST",
+                            data:{
+                            _token: '{!! csrf_token() !!}',
+                            thema: $('#themaCombo option:selected').val(),
+                            search_val: $('#search').val()
+                            },
+                            success: function(data){
+                                // 서버에서는 contentbox_content의 내용을 만들고 jquery에서는
+                                // 그 만든 것을 보여주기만 하면된다.
+                                $('.contentbox-content').html(data);
+                            }
+                        })
+                    });
+                });
+                
+            </script>
+        </div>
+        
+        
         <div class="contentbox-content">
             <!-- 설문조사 목록 보여주기 -->
 
             <div class="survey-list">
-                <ul>
-
+                <ul id="item_list">
+                    
                     <!-- foreach -->
+                    <!--
+                        또, end_date가 현재보다 작은경우는 설문종료를 표시한다.
+                     -->
+                    @foreach($list as $row)
+
                     <li>
-                        <a>
-                            <!-- -->
-                            <!-- <div class="img-box">
-                                <img src="{{ asset('img/slide1.jpg')}}" data-src="">
-                            </div> -->
-
-                            <div class="img-box" style="background-image:url({{ asset('img/slide1.jpg')}})">
-
+                        <a href="{{ url('surveyView/'.$row->survey_id) }}">
+                            <div class="img-box" style="background-image:url({{ asset('uploads/'.$row->img_url) }})">
                             </div>
+
                             <div class="text-box">
-                                <p class="tag">음악</p>
-                                <p class="point">+100포인트</p>
-                                <p class="title">어떤류의 음악을 좋아하시나요?</p>
-                                <p class="date">2018-11-26 ~ 2018-12-31</p>
+                                <p class="tag">{{ strtoupper($row->thema) }}</p>
+                                <p class="point">+{{ $row->point }}포인트</p>
+                                <p class="title">{{ $row->title }}</p>
+
+                                @if($row->end_date < date("Y-m-d"))
+                                <p class="date">설문종료</p>
+
+                                @else
+                                <p class="date">{{ substr($row->start_date, 0, 10) }} ~ {{ substr($row->end_date, 0, 10) }}</p>
+                                @endif
                             </div>
                         </a>
                     </li>
-
-                    <li>
-                        <a>
-                            <!-- -->
-                            <!-- <div class="img-box">
-                                <img src="{{ asset('img/slide1.jpg')}}" data-src="">
-                            </div> -->
-
-                            <div class="img-box" style="background-image:url({{ asset('img/slide1.jpg')}})">
-
-                            </div>
-                            <div class="text-box">
-                                <p class="tag">음악</p>
-                                <p class="point">+100포인트</p>
-                                <p class="title">어떤류의 음악을 좋아하시나요?</p>
-                                <p class="date">2018-11-26 ~ 2018-12-31</p>
-                            </div>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a>
-                            <!-- -->
-                            <!-- <div class="img-box">
-                                <img src="{{ asset('img/slide1.jpg')}}" data-src="">
-                            </div> -->
-
-                            <div class="img-box" style="background-image:url({{ asset('img/slide1.jpg')}})">
-
-                            </div>
-                            <div class="text-box">
-                                <p class="tag">음악</p>
-                                <p class="point">+100포인트</p>
-                                <p class="title">어떤류의 음악을 좋아하시나요?</p>
-                                <p class="date">2018-11-26 ~ 2018-12-31</p>
-                            </div>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a>
-                            <!-- -->
-                            <!-- <div class="img-box">
-                                <img src="{{ asset('img/slide1.jpg')}}" data-src="">
-                            </div> -->
-
-                            <div class="img-box" style="background-image:url({{ asset('img/3step.png')}})">
-
-                            </div>
-                            <div class="text-box">
-                                <p class="tag">음악</p>
-                                <p class="point">+100포인트</p>
-                                <p class="title">어떤류의 음악을 좋아하시나요?</p>
-                                <p class="date">2018-11-26 ~ 2018-12-31</p>
-                            </div>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a>
-                            <!-- -->
-                            <!-- <div class="img-box">
-                                <img src="{{ asset('img/slide1.jpg')}}" data-src="">
-                            </div> -->
-
-                            <div class="img-box" style="background-image:url({{ asset('img/slide1.jpg')}})">
-
-                            </div>
-                            <div class="text-box">
-                                <p class="tag">음악</p>
-                                <p class="point">+100포인트</p>
-                                <p class="title">어떤류의 음악을 좋아하시나요?skldfnsdklfklsjdklfjskldfjklsdfjklsdjlfkljsklfjsdklfjl</p>
-                                <p class="date">2018-11-26 ~ 2018-12-31</p>
-                            </div>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a>
-                            <!-- -->
-                            <!-- <div class="img-box">
-                                <img src="{{ asset('img/slide1.jpg')}}" data-src="">
-                            </div> -->
-
-                            <div class="img-box" style="background-image:url({{ asset('img/slide1.jpg')}})">
-
-                            </div>
-                            <div class="text-box">
-                                <p class="tag">음악</p>
-                                <p class="point">+100포인트</p>
-                                <p class="title">어떠나ㅓㄹ아ㅓ비ㅓ제ㅐㅓ재ㅔ더ㅐㅔ서배ㅔㅓ재ㅔㅓㅐㅔㅂ저대나우라ㅣ너ㅣ아ㅣㅓsdfsdffsdf라ㅣ;ㅔ</p>
-                                <p class="date">2018-11-26 ~ 2018-12-31</p>
-                            </div>
-                        </a>
-                    </li>
-                    <!-- endforeach -->
+                    @endforeach
 
                 </ul>
+                
             </div>
 
             <!-- 페이지네이션 -->
-            <div>
-                
-            </div>
-
-            <!-- iframe -->
-            <div>
-                
+            <div class="pagination_div">
+                {{ $list->render() }}
             </div>
         </div>
+
     </div>
 </div>
 
+<!-- 페이지네이션 부분의 링크 클리시 ajax로 처리 -->
 <script>
-    
+    $(document).on('click', '.pagination a', function(e) {
+        e.preventDefault();
+        var page = $(this).attr('href').split('page=')[1];
+        getList(page);
+    });
+
+    // 서버에서는 contentbox_content의 내용을 만들고 jquery에서는
+    // 그 만든 것을 보여주기만 하면된다.
+    function getList(page) {
+        // console.log('getting list for page = ' + page);
+
+        $.ajax({
+            url: 'whole_survey/ajax?page=' + page
+
+        }).done(function(data) {
+            // console.log(data);
+            $('.contentbox-content').html(data);
+        });
+    }
 </script>
 @endsection
 

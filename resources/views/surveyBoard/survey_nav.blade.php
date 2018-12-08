@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="{{ asset('css/help/notices.css') }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <div id="main-container" class="se-wrapper">
         <div class="wrapper">
@@ -16,8 +17,8 @@
                             <li class="page-title" id="off_survey">
                                 <a href="{{ route('surveyBoard.off_survey') }}">종료된 설문</a>
                             </li>
-                            <li class="page-title" id="make_survey">
-                                <a href="{{ route('surveyBoard.make_survey') }}">설문작성</a>
+                            <li class="page-title" id="my_survey">
+                                <a href="{{ route('surveyBoard.my_survey') }}">나의 설문</a>
                             </li>
                         </ul>
                         <div class="navbar">
@@ -28,11 +29,13 @@
                                     <a href="{{ route('surveyBoard.whole_survey') }}">전체 설문</a>
                                     <a href="{{ route('surveyBoard.on_survey') }}">진행 중인 설문</a>
                                     <a href="{{ route('surveyBoard.off_survey') }}">종료된 설문</a>
-                                    <a href="{{ route('surveyBoard.make_survey') }}">설문작성</a>
+                                    <a href="{{ route('surveyBoard.my_survey') }}">나의 설문</a>
                                 </div>
                             </div> 
                         </div>
                     </nav>
                 </div>
+            </div>
+            <div class="inner">
             </div>
             <script type="text/javascript" src="{{ asset('js/help/help_nav.js') }}"></script>

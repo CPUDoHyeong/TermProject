@@ -6,37 +6,108 @@ use Illuminate\Http\Request;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use App\Survey;
+use App\Answer;
 use Illuminate\Http\UploadedFile;
 use DB;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class SurveyController extends Controller
 {
     // 설문 작성은 로그인 회원만 볼 수 있도록 하기 위해 auth 추가.
     public function __construct() {
-        $this->middleware('auth', ['except' => ['whole_survey', 'on_survey', 'off_survey', 'make_survey']]);
+        $this->middleware('auth', ['except' => ['whole_survey', 'search_survey', 'on_survey', 'off_survey', 'make_survey', 'surveyView']]);
     }
 
-
+    // 설문조사 목록을 보여주는 게시판
     public function whole_survey() {
-        return view('surveyBoard.whole_survey');
+        $survey_list = null;
+
+        /**
+         * DB에 있는 목록을 들고 온다
+         * 게시 순서는 먼저 end_date로 종료일이 얼마남지 않은 것을 보여주고
+         * 두번째로 start_date를 해서 시작일이 빠른순으로 보여준다.
+         * 아직 시작되지 않은 설문(시작일이 현재시간보다 나중인 것)은 보여주지 않는다.
+         */
+        
+        // 먼저 where 절로 start_date가 현재시간보다 크다면 뺸다.
+        // $survey_list = DB::table('surveys')->where('start_date', '<=', Carbon::now())->orderBy('start_date')->orderBy('end_date')->get();
+
+        $survey_list = Survey::where('start_date', '<=', Carbon::now())->orderBy('end_date')->orderBy('start_date')->paginate(6);
+
+        return view('surveyBoard.whole_survey')->with('list', $survey_list);
     }
 
+    // 설문조사 목록에서 페이지번호누르면 ajax로 처리하는 부분
+    public function page_ajax(Request $request) {
+        $survey_list = null;
+
+        $survey_list = Survey::where('start_date', '<=', Carbon::now())->orderBy('end_date')->orderBy('start_date')->paginate(6);
+
+        /**
+         * return을 게시판을 보여주는 div에 줌으로써 그 div파일에서는
+         * list를 보여준다. 그리고 jqeury는 그 화면 자체를 기존의
+         * 게시판 div에다가 넣어주면 되는 것이다.
+         */
+        return view('surveyBoard.ajax_return')->with('list', $survey_list);
+    }
+
+    // 검색버튼 눌렀을 때 ajax처리
+    public function search_survey(Request $request) {
+        $list = null;
+
+        // 넘어온 값 받기
+        $thema = $request->thema;           // 분류
+        $search_val = $request->search_val; // 검색 값
+
+        if($thema) {
+            
+            $list = Survey::where('start_date', '<=', Carbon::now())->where('thema', '=', $thema)->where('title', 'Like', '%'. $search_val .'%')->orderBy('end_date')->orderBy('start_date')->paginate(6);
+        } else {
+
+            // 분류 값이 없으면 where에서 제외
+            $list = Survey::where('start_date', '<=', Carbon::now())->where('title', 'Like', '%'. $search_val .'%')->orderBy('end_date')->orderBy('start_date')->paginate(6);
+        }
+
+        // 이것도 마찬가지 게시판을 보여주는 div 템플릿에다가 list를 준다.
+        return view('surveyBoard.ajax_return')->with('list', $list);
+    }
+
+    // 진행중인 설문조사
     public function on_survey() {
-        return view('surveyBoard.on_survey');
+        $survey_list = null;
+
+        $survey_list = Survey::where('start_date', '<=', Carbon::now())->where('end_date', ">=", Carbon::now())->orderBy('end_date')->orderBy('start_date')->paginate(6);
+
+        return view('surveyBoard.on_survey')->with('list', $survey_list);
     }
 
+    // 종료된 설문조사
     public function off_survey() {
-        return view('surveyBoard.off_survey');
+        $survey_list = null;
+
+        $survey_list = Survey::where('end_date', '<', Carbon::now())->orderBy('start_date')->orderBy('end_date')->paginate(6);
+
+        return view('surveyBoard.off_survey')->with('list', $survey_list);
     }
 
-    public function make_survey() {
-        return view('surveyBoard.make_survey');
+    // 내가 작성한 설문조사를 보여준다.
+    public function my_survey() {
+        $survey_list = null;
+        $user_email = Auth::user()->email; // 현재 접속 유저 이메일 가지고온다.
+
+        // 예정인 것도 여기서는 보여준다.
+        $survey_list = Survey::where('reg_user', '=' ,$user_email)->orderBy('end_date')->orderBy('start_date')->paginate(6);
+
+        return view('surveyBoard.my_survey')->with('list', $survey_list);
     }
 
+    // 설문조사 작성 페이지
     public function create_survey_form() {
         return view('surveyBoard.create_survey_form');
     }
 
+    // 설문조사 작성 처리
     public function create_survey(Request $request) {
 
         // 라라벨 유효성 검사
@@ -76,15 +147,13 @@ class SurveyController extends Controller
          * 이 함수는 날짜 형식의 문자열을 1970년 1우러 1일 0시 부터 시작하는
          * 유닉스 타임스탬프로 변화시키는 함수이다.
          */
-        date_default_timezone_set("Asia/Seoul"); // 타임존 한국시간으로
         $end_date = $request->end_date;
         $start_date = $request->start_date;
         $regtime = date("Y-m-d H:i:s");          // 현재 date
 
         $start_date_target = strtotime($start_date);
         $end_date_target = strtotime($end_date);
-        $regtime_ymd = date("Y-m-d");    // 비교를 위해 년월일만 가지는 것을 하나 더 만듬.
-
+        $regtime_ymd = date("Y-m-d");            // 비교를 위해 년월일만 가지는 것을 하나 더 만듬.
         $regtime_target = strtotime($regtime_ymd);
 
         // $test = date("Y-m-d H:i:s", $start_date_target);
@@ -107,6 +176,7 @@ class SurveyController extends Controller
         } else if($start_date_target < $regtime_target || $end_date_target < $regtime_target) {
             // 2의 경우
             return back()->with('date_err', '현재시간보다 작을수는 없습니다')->withInput();
+
         } else if($start_date_target > $end_date_target) {
             // 3의 경우
             $temp = $end_date;
@@ -116,8 +186,8 @@ class SurveyController extends Controller
 
         // 체크가 됐으면 end date를 바꿔준다.
         // 위 과정을 거쳐야 확실한 end_date가 되므로 위 과정후에 한다.
-        // 먼저 end_date에 하루를 더하고 다시 날짜형식으로 바꿔준다.
-        $end_date = date("Y-m-d", strtotime("$end_date +1 days"));
+        // 먼저 end_date에 23시간 59분을 더하고 다시 날짜형식으로 바꿔준다.
+        $end_date = date("Y-m-d", strtotime("$end_date +23 hours +59 minutes"));
                 
         $point = $request->point;
         // 포인트 체크
@@ -132,6 +202,7 @@ class SurveyController extends Controller
         if($limit == 'non_limit') {
             // 제한없음이 체크되어 있으면.
             $limit_count = -1;
+
         } else if($limit == 'entry') {
             // 직접입력으로 되어있는것도 0 미만인지 확인.
             $limit_count = $request->limit_count;   
@@ -149,17 +220,19 @@ class SurveyController extends Controller
         $file->move($taget_dir, $file->getClientOriginalName());
         $img_url = $file->getClientOriginalName();
 
-
+        // 사용자에 설문을 요청할때 답변을 단수로 받을 것인지 복수로 받을 것인지 정한다.
         $item_type = $request->item_type;
         // 체크하여 0과 1로 구분
         if($item_type == 'single') {
             // 단수 즉 radio
             $item_type = 0;
+
         } else if($item_type == 'plural') {
-            // 복수 즉 checkbox 
+            // 복수 즉 checkbox
             $item_type = 1;
         }
 
+        // 보기를 설정하는데 배열값을 string으로 바꾸기 위해 implode를 사용 그리고 /로 보기를 구분한다.
         $item_list = implode("/", $request->item);
         $reg_user = $request->email;
         
@@ -181,9 +254,11 @@ class SurveyController extends Controller
         return redirect()->route('surveyBoard.whole_survey')->with('msg', '정상적으로 등록 되었습니다.');
     }
 
+    // 설문조사 게시글 상세보기.
     public function surveyView(Request $request) {
-        $id = 6;
-        $list = DB::table('surveys')->where('survey_id', $id)->first();
+        $survey_id = $request->survey_id;
+
+        $list = DB::table('surveys')->where('survey_id', $survey_id)->first();
         $item_list = $list->item_list;
 
         
@@ -191,5 +266,31 @@ class SurveyController extends Controller
         $item_list_arr = explode('/', $item_list);
         
         return view('surveyBoard.surveyView')->with('list', $list)->with('item_list', $item_list_arr);
+    }
+
+    // 사용자 설문조사 참여 처리
+    public function join_survey(Request $request) {
+
+        $survey_id = $request->survey_id;
+        $answer = $request->answer;
+        $point = $request->point;
+
+        // 답변선택을 안했으면 back
+        if(!$answer) {
+            return back()->with('answer_err', '답을 체크해 주세요.')->withInput();
+        }
+
+        $user_answers = implode("/", $request->answer);
+        $submit_date = date("Y-m-d H:i:s");
+        $user_email = $request->email;
+
+        // DB 삽입
+        Answer::create([
+            'survey_id' => $survey_id,
+            'user_answers' => $user_answers,
+            'submit_date' => $submit_date,
+            'user_email' => $user_email
+        ]);
+        return redirect()->route('surveyBoard.whole_survey')->with('msg', '설문에 참여해 주셔서 감사합니다.\n'.$point.'포인트가 적립되었습니다.');
     }
 }

@@ -104,6 +104,7 @@ function addItem() {
         replace_input.setAttribute('name', 'item[]');
         replace_input.setAttribute('placeholder', '항목' + (i + 1));
         replace_input.setAttribute('required', 'required');
+        replace_input.setAttribute('onkeydown', 'return rule(event)');
     }
 
 }
@@ -137,3 +138,16 @@ $("input[name=limit]").change(function() {
         $('.limit-input').attr("value", "");
     }
 });
+
+// 설문작성할때 보기 부분 /(슬래쉬) 금지 슬래쉬의 코드는 191임
+function rule(event) {
+    
+    event = event || window.event;
+    var keyID = (event.which) ? event.which : event.keyCode;
+    if (keyID == 191) {
+        alert('"/" 는 입력 하실 수 없습니다.');
+        return false;
+    }
+    else
+        return;
+}

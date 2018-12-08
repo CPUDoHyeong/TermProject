@@ -82,7 +82,7 @@ class HelpController extends Controller
         return redirect()->route('help.notice')->with('msg', '정상적으로 등록 되었습니다.');
     }
 
-    // 글 자세히 보기
+    // 글 상세 보기
     public function view(Request $request) {
         $id = $request->id;
 
@@ -92,6 +92,7 @@ class HelpController extends Controller
         return view('help.view')->with('list', $list);
     }
 
+    // 글 수정 화면
     public function update_form(Request $request) {
         $id = $request->id;
 
@@ -101,6 +102,7 @@ class HelpController extends Controller
         return view('help.update_form')->with('list', $list);
     }
 
+    // 글 수정
     public function update(Request $request) {
         $id = $request->id;
         $title = $request->title;
@@ -116,6 +118,7 @@ class HelpController extends Controller
         return redirect()->route('help.notice')->with('msg', "정상적으로 수정되었습니다.");
     }
 
+    // 글 삭제
     public function delete(Request $request) {
         $id = $request->id;
         $user_email = Auth::user()->email;
