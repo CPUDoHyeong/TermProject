@@ -12,6 +12,9 @@
 
 <link rel="stylesheet" href="{{ asset('css/help/notice_board.css')}}">
 
+<!-- ckeditor -->
+<script src="{{URL::to('/')}}/ckeditor/ckeditor.js"></script>
+
 <div class="content">
     <form accept-charset="UTF-8" action="{{ url('help/update', $list->id )}}" class="edit-user" id="write-form" method="POST">
         @csrf
@@ -32,7 +35,20 @@
                         <label class="field-name">내용</label>
                     </li>
                     <li>
-                        <textarea class="content-input" id="content" name="content">{{ $list->content }}</textarea>
+                        <!-- <textarea class="content-input" id="content" name="content"></textarea> -->
+
+                        <div class="info">
+                            <div class="select">
+                                <textarea id="contents" name="content">{{ $list->content }}
+                                </textarea>
+
+                                <script type="text/javascript">
+                                    CKEDITOR.replace('contents',{
+                                        'filebrowserUploadUrl' : "{{URL::to('/')}}/ckeditor/upload.php"
+                                        });
+                                </script>
+                            </div>
+                        </div>
                     </li>
                 </ul>
             </div>

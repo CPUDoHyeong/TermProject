@@ -1,0 +1,392 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+ul {
+    list-style: none;
+    list-style-image: none;
+    padding: 0;
+    margin: 0;
+}
+
+*:focus {
+    outline: none;
+    outline-style: solid;
+    outline-color: #999;
+    outline-width: 2px;
+}
+
+.bg {
+    height: 100vh;
+    width: 100%;
+    background: url(../../img/survey/survey_view_bg.jpg) no-repeat center center fixed; -webkit-background-size: cover;
+    -moz-background-size: cover; 
+    -o-background-size: cover; 
+    background-size: cover;
+    overflow-y: scroll;
+}
+
+.wrapper {
+    min-height: 100vh;
+    position: relative;
+    width: 100%;
+    display: flex;
+}
+
+.survey-container {
+    max-width: 770px;
+    position: relative;
+    margin: 99px auto 95px;
+    background-color: rgba(255, 255, 255, 0.95);
+}
+
+.survey-title {
+    position: relative;
+    padding: 10px 5px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    
+}
+
+.title-wrapper {
+    padding: 10px 29px;
+    position: relative;
+}
+
+.title-wrapper h1 {
+    font-size: 20px;
+}
+
+.title-wrapper .close {
+    background-color: transparent;
+    right: 15px;
+    top: 15px;
+    opacity: 1;
+    cursor: pointer;
+    display: block;
+    width: 40px;
+    height: 40px;
+    outline: none;
+    position: absolute;
+}
+
+.title-wrapper a:after,
+.title-wrapper a:before {
+    background-color: #333;
+    content: "";
+    display: block;
+    height: 3px;
+    left: 6px;
+    position: absolute;
+    top: 18px;
+    width: 28px;
+}
+
+.title-wrapper a:before {
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+
+.title-wrapper a:after {
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.hidden-data {
+    margin: 0;
+    padding: 0;
+    display: inline;
+}
+
+.show-wrapper .info {
+    clear: both;
+    position: relative;
+    padding: 5px 29px;
+}
+
+.show-wrapper .info p {
+    height: auto;
+    font-size: 20px;
+    line-height: 24px;
+    color: #333;
+    font-weight: 560;
+}
+
+/* 시작일자 종료일자 설정 css */
+.show-wrapper .date {
+    
+    display: block;
+    padding: 5px 29px;
+}
+
+.show-wrapper .date p {
+    height: auto;
+    font-size: 16px;
+    line-height: 24px;
+    color: #333;
+    font-weight: 560;
+    margin: 0;
+}
+
+.date .start-date {
+    display: inline-block;
+    width: 49%;
+}
+
+.date .end-date {
+    display: inline-block;
+    width: 49%;
+}
+
+.show-wrapper .etc-wrapper {
+    clear: both;
+    position: relative;
+    padding: 3px 29px;
+}
+
+.show-wrapper .etc-wrapper .view-date {
+    display: inline-block;
+}
+
+.show-wrapper .etc-wrapper .view-date p {
+    color: gray;
+    font-size: 13px;
+    margin: 0;
+}
+
+.show-wrapper .etc-wrapper .view-point {
+    float: right;
+}
+
+.show-wrapper .etc-wrapper .view-point span {
+    color: #345a9a;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.answer-wrapper, .choice-wrapper {
+    clear: both;
+    position: relative;
+    padding: 25px 29px;
+    margin-bottom: 10px;
+}
+
+.answer-wrapper {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.question {
+    position: relative;
+    text-align: center;
+    width: 100%;
+}
+
+.question img {
+    max-width: 100%; /* 이미지의 최대사이즈 */
+    width: auto;
+    height: auto;
+    max-height: 500px;
+    box-sizing: border-box;
+    
+}
+
+.question .bb {
+    position: relative;
+    max-width: 100%;
+    float: left;
+    height: 500px;
+    box-sizing: content-box;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover; 
+    -o-background-size: cover; 
+}
+
+.question .question-span {
+    position: absolute;
+    top: 3px;
+}
+
+.question p {
+    margin: 0;
+    padding-left: 20px;
+    padding-right: 20px;
+    height: auto;
+    font-size: 16px;
+    line-height: 28px;
+}
+
+.answer {
+    margin-right: 20px;
+    margin-left: 20px;
+    padding-right: 20px;
+}
+
+.answer .answer-textarea {
+    overflow-x: hidden;
+    overflow-wrap: break-word;
+    height: 94px;
+    font-size: 16px;
+    line-height: 28px;
+    width: 100%;
+    overflow: hidden;
+    resize: none;
+    word-wrap: break-word;
+    border: 1px dashed;
+    background-color: rgb(243, 243, 243);
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 4px 9px;
+}
+
+/* item css */
+.choice-wrapper .ul-wrapper {
+    width: 100%;
+    box-sizing: border-box;
+    display: inline-block;
+}
+
+.choice-wrapper .ul-wrapper ul {
+    width: 100%;
+}
+
+.choice-wrapper .ul-wrapper li {
+    width: 100%;
+    padding: 6px 0 20px;
+}
+
+.choice-wrapper .ul-wrapper .graph_head {
+    font-size: 14px;
+    color: #333;
+    font-weight: 700;
+    word-wrap: break-word;
+    margin: 0;
+}
+
+.choice-wrapper .ul-wrapper .graph_head span {
+    margin-left: 10px;
+    color: #345a9a;
+}
+
+.choice-wrapper .ul-wrapper .graph_body {
+    position : relative;
+    margin-top: 3px;
+    height: 16px;
+    background-color: #eee;
+}
+
+.choice-wrapper .ul-wrapper .graph_body .bar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 16px;
+    width: 0px;
+    background: url(../../img/survey/icon_barBg.png) repeat-x;
+    
+}
+
+.choice-wrapper .ul-wrapper label {
+    display: inline-block;
+    border: 1px solid #999;
+    line-height: 28px;
+    font-size: 16px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 4px 9px;
+    margin-bottom: 5px;
+}
+
+
+
+.answer .answer-email {
+    position: relative;
+    font-size: 16px;
+    line-height: 28px;
+    width: 300px;
+    border: 1px dashed;
+    background-color: rgb(243, 243, 243);
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 4px 9px;
+}
+
+.button-wrapper {
+    clear: both;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    padding: 0 30px 20px;
+    overflow: hidden;
+}
+
+.button-wrapper .submit-btn {
+    width: 300px;
+    font-size: 20px;
+    line-height: 50px;
+    background-color: #fff;
+    border: 1px solid #999;
+    height: 50px;
+    cursor: pointer;
+}
+
+.button-wrapper .submit-btn:hover {
+    background-color: #eee;
+}
+
+.button-wrapper .submit-btn:active {
+    border: none;   
+}
+
+@media screen and (max-width: 810px) {
+    .survey-container {
+        width: 100%;
+        margin: 54px 10px 54px 10px;
+    }
+}
+
+@media screen and (max-width: 720px) {
+    .answer-wrapper, .choice-wrapper {
+        padding: 25px 10px;
+        margin-bottom: 10px;
+    }
+
+    .choice-wrapper .ul-wrapper {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .question img {
+        padding-right: 20px;
+        padding-left: 20px;
+    }
+
+    .button-wrapper .submit-btn {
+        width: 40%;
+    }
+}
+
+@media screen and (max-width: 648px) {
+
+    .choice-wrapper .ul-wrapper li {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 440px) {
+    .choice-wrapper .answer-email {
+        width: 100%;
+    }
+
+    .show-wrapper .info p {
+        font-size: 16px;
+    }
+
+    .show-wrapper .etc-wrapper .view-point span {
+        font-size: 13px;
+    }
+
+    .choice-wrapper .ul-wrapper label {
+        font-size: 13px;
+    }
+}

@@ -18,7 +18,6 @@ class HelpController extends Controller
     // 기본 화면은 notices 화면임.
     public function index(Request $request) {
         return $this->notices($request);
-        
     }
 
     // 공지사항

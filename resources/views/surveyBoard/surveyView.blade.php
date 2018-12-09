@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>e-survey 고객지원</title>
+    <title>e-survey 설문조사</title>
     <link rel="stylesheet" href="{{ asset('css/survey/surveyView.css?ddddf') }}">
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
@@ -26,6 +26,7 @@
                         <!-- DB의 분류를 가지고온다 -->
                         <h1>{{ strtoupper($list->thema) }}</h1>
 
+                        <!-- X버튼 -->
                         <a href="javascript:history.back()" class="close" title="목록으로"></a>
                     </div>
                 </div>
@@ -93,8 +94,8 @@
                             </div>
 
                             <div class="button-wrapper">
-                                <button class="submit-btn" name="button" type="submit">참여하기</button>
-                                <input class="submit-btn" type="button" value="결과보기">
+                                <button class="submit-btn" id="join-btn" name="button" type="submit">참여하기</button>
+                                <input class="submit-btn" type="button" value="결과보기" onclick="location.href='{{ url('surveyBoard/result/'.$list->survey_id) }}'">
                             </div>
                         </div>
                     </form>

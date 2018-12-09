@@ -10,6 +10,9 @@
 
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/help/notice_board.css') }}">
+
+<!-- ckeditor -->
+<script src="{{URL::to('/')}}/ckeditor/ckeditor.js?dd"></script>
 @if(session()->has('msg'))
     <script>
         alert("{{ session('msg') }}");
@@ -22,7 +25,7 @@
             <span class="regtime">{{$list->regtime}}</span>
         </div>
         <div class="contentbox-content">
-            <p>{{$list->content}}</p>
+            <p>{!!$list->content!!}</p>
         </div>
     </div>
 

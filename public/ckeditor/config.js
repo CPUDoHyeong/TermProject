@@ -21,5 +21,15 @@ CKEDITOR.editorConfig = function( config ) {
 		{ name: 'about', groups: [ 'about' ] }
 	];
 
+	config.htmlEncodeOutput = false;
+
 	config.removeButtons = 'Underline,Subscript,Superscript,wenzgmap,TextColor,BGColor,Blockquote,Outdent,Indent,BulletedList,NumberedList,RemoveFormat,Strike,Table,HorizontalRule,SpecialChar,Smiley,Youtube,Anchor,Unlink,Link,Scayt';
+
+	// Set the most common block elements.
+	config.format_tags = 'p;h1;h2;h3;pre';
+
+
+	config.height = '500px';
+	// Simplify the dialog windows.
+	config.removeDialogTabs = 'image:advanced;link:advanced';
 };

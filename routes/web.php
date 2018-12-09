@@ -135,6 +135,12 @@ Route::post('surveyBoard/join_survey', [
 	'uses' => 'SurveyController@join_survey'
 ]);
 
+// 설문결과 처리
+Route::get('surveyBoard/result/{survey_id}', [
+	'as' => 'result',
+	'uses' => 'SurveyController@result'
+]);
+
 // 로그인 화면
 Route::get('member', [
 	'as' => 'member',

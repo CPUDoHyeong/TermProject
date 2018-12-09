@@ -16,7 +16,7 @@ class SurveyController extends Controller
 {
     // 설문 작성은 로그인 회원만 볼 수 있도록 하기 위해 auth 추가.
     public function __construct() {
-        $this->middleware('auth', ['except' => ['whole_survey', 'search_survey', 'on_survey', 'off_survey', 'make_survey', 'surveyView']]);
+        $this->middleware('auth', ['except' => ['whole_survey', 'search_survey', 'on_survey', 'off_survey', 'surveyView', 'result', 'page_ajax']]);
     }
 
     // 설문조사 목록을 보여주는 게시판
@@ -259,6 +259,7 @@ class SurveyController extends Controller
         $survey_id = $request->survey_id;
 
         $list = DB::table('surveys')->where('survey_id', $survey_id)->first();
+
         $item_list = $list->item_list;
 
         
@@ -275,6 +276,13 @@ class SurveyController extends Controller
         $answer = $request->answer;
         $point = $request->point;
 
+        $list = DB::table('surveys')->where('survey_id', $survey_id)->first();
+
+        // 기간이 지났으면 back
+        if($list->end_date < Carbon::now()) {
+            return back()->with('answer_err', '종료된 설문입니다.');
+        }
+
         // 답변선택을 안했으면 back
         if(!$answer) {
             return back()->with('answer_err', '답을 체크해 주세요.')->withInput();
@@ -284,6 +292,15 @@ class SurveyController extends Controller
         $submit_date = date("Y-m-d H:i:s");
         $user_email = $request->email;
 
+        // 이미 참여한 경우 back
+        // survey_id로 answer data 를 가져오고 user_eamil컬럼에
+        // 현재 답변 제출한 email과 중복되는 경우 return하면된다.
+        $answers = DB::table('answers')->where('survey_id', '=', $survey_id)->where('user_email', '=', $user_email)->get();
+
+        if($answers) {
+            return back()->with('answer_err', '이미 설문에 참여하였습니다.');
+        }
+        
         // DB 삽입
         Answer::create([
             'survey_id' => $survey_id,
@@ -292,5 +309,71 @@ class SurveyController extends Controller
             'user_email' => $user_email
         ]);
         return redirect()->route('surveyBoard.whole_survey')->with('msg', '설문에 참여해 주셔서 감사합니다.\n'.$point.'포인트가 적립되었습니다.');
+    }
+
+    // 설문결과 보여주기
+    public function result(Request $request) {
+        $survey_id = $request->survey_id;
+
+        // 먼저 survey_id로 surveys 테이블에서 원래의 목록을 가져온다.
+        $list = DB::table('surveys')->where('survey_id', $survey_id)->first();
+
+        // 답안 테이블에서 survey_id에 답변한 목록을 가져온다.
+        $answers = DB::table('answers')->where('survey_id', $survey_id)->get();
+
+        // 각각의 요소의 %를 구하기 위해 필요한 전체 답변의 수
+        // 사용자 답변을 카운트할떄마다 하나씩 더한다.
+        $answer_count = 0;
+        
+        // 보기들의 리스트를 가져온다.
+        // 슬래쉬(/) 로 된 string을 배열로 나누어 저장한다.
+        $item_list = explode('/', $list->item_list);
+        
+        // 각각의 아이템의 카운트를 지정하기 위해 연관배열로 만든다.
+        $item_count_arr = array();
+        foreach($item_list as $item) {
+            $item_count_arr[$item] = 0;
+        }
+
+        // foreach($item_count_arr as $key => $value) {
+        //     $item_count_arr[$key] = 1;
+        // }
+            
+        /**
+         * 이 temp array는 사용자가 답변한 것을 임시 저장해 놓는 배열이다.
+         * 사용자 답안 컬럼에서 /(슬래쉬)를 기준으로 답변을 나누고 
+         * 이 temp에 저장해 놓는다.
+         * 그리고 그 temp를 반복하면서 사용자의 답변이
+         * 선택지 항목들에 포함되는지 확인(array_key_exists)한다.
+         * 포함된다면 그 포함된 값을 이용하여 item_count_arr의 그 항목을 +1한다.
+         * 이런식으로 사용자가 답한 것을 모두 카운트 할 수 있다.
+         * 또한 위에 언급하였듯이 사용자의 답변을 이때 카운트한다.
+         */
+        $temp = array();
+        foreach($answers as $key => $answer) {
+            if($key = 'user_answers') {
+                $temp = explode('/', $answer->user_answers);
+            }
+
+            foreach($temp as $value) {
+                if(array_key_exists($value, $item_count_arr)) {
+                    $item_count_arr[$value] += 1;
+                    $answer_count++;
+                }
+            }
+        }
+
+        // 위의 과정을 거쳤으면 answer_count값으로 각 항목들의 %를 구한다
+        // 소수점 첫째자리까지 나타낸다.
+        // 투표수가 0인 값은 게산하지 않고 넘어간다.
+        // 이 과정을 거치면 item_count_arr 배열에는 %값들이 자리하게 된다.
+        foreach($item_count_arr as $key => $value) {
+            if($item_count_arr[$key] != 0) {
+                $item_count_arr[$key] = round(($value / $answer_count) * 100, 1);
+            }
+        }
+        
+
+        return view('surveyBoard.result_survey')->with('list', $list)->with('item_list', $item_count_arr);
     }
 }
