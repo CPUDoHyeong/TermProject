@@ -23,11 +23,17 @@
                         </script>
                     @endif
 
+                    @if(session()->has('success_msg'))
+                        <script>
+                            alert("{{ session('success_msg') }}");
+                        </script>
+                    @endif
+
                         <!-- DB의 분류를 가지고온다 -->
                         <h1>{{ strtoupper($list->thema) }}</h1>
 
                         <!-- X버튼 -->
-                        <a href="javascript:history.back()" class="close" title="목록으로"></a>
+                        <a href="{{ route('surveyBoard.whole_survey') }}" class="close" title="목록으로"></a>
                     </div>
                 </div>
                 <div class="survey-content">

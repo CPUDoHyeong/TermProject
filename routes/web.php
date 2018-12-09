@@ -16,6 +16,8 @@ Route::get('/', function () {
     return view('home/index');
 });
 
+// Route::get('/', 'HomeController@index')->name('home');
+
 // 도움말 들어가면 기본적으로 보여줄 공지사항
 Route::get('help', [
 	'as' => 'help.notice',
@@ -203,7 +205,7 @@ Route::get('social/{provider}', [
 
 
 
-
+// ---------------------------- 연습 -------------------------------------
 // Route::get('test/{name?}', function($name="홍길동"){
 // 	return $name . ' 님, Test입니다.';
 // });
@@ -276,8 +278,6 @@ Route::post('/project/task/store', ['as' => 'task.add', 'uses' => 'TaskControlle
 Route::resource('orders', 'OrderController');
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('ajax', function() {
 	return view('message');

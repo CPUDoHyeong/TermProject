@@ -7,6 +7,7 @@ use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use App\Survey;
 use App\Answer;
+use App\User;
 use Illuminate\Http\UploadedFile;
 use DB;
 use Carbon\Carbon;
@@ -292,15 +293,17 @@ class SurveyController extends Controller
         $submit_date = date("Y-m-d H:i:s");
         $user_email = $request->email;
 
+
         // 이미 참여한 경우 back
         // survey_id로 answer data 를 가져오고 user_eamil컬럼에
         // 현재 답변 제출한 email과 중복되는 경우 return하면된다.
         $answers = DB::table('answers')->where('survey_id', '=', $survey_id)->where('user_email', '=', $user_email)->get();
-
-        if($answers) {
+        
+        // DB에서 가져온 값이 있다면 back
+        if(count($answers) != 0) {
             return back()->with('answer_err', '이미 설문에 참여하였습니다.');
         }
-        
+
         // DB 삽입
         Answer::create([
             'survey_id' => $survey_id,
@@ -308,7 +311,13 @@ class SurveyController extends Controller
             'submit_date' => $submit_date,
             'user_email' => $user_email
         ]);
-        return redirect()->route('surveyBoard.whole_survey')->with('msg', '설문에 참여해 주셔서 감사합니다.\n'.$point.'포인트가 적립되었습니다.');
+
+        // 포인트 적립 -> user 테이블 update
+        $user = DB::table('users')->where('email', '=', $user_email)->first();
+        $add_point = $user->point + $point;
+        DB::table('users')->where('email', $user_email)->update(['point' => $add_point]);
+        
+        return redirect('surveyView/'.$survey_id)->with('success_msg', '설문에 참여해 주셔서 감사합니다.\n'.$point.'포인트가 적립되었습니다.');
     }
 
     // 설문결과 보여주기

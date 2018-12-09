@@ -1,5 +1,5 @@
 <!-- Styles -->
-<link rel="stylesheet" href="{{ asset('css/main.css?dd') }}">
+<link rel="stylesheet" href="{{ asset('css/main.css?ddd') }}">
 
 <div class="topnav">
 
@@ -21,6 +21,7 @@
                     <a href="{{ url('create_survey_form') }}">설문 작성</a>
                     <a href="{{ url('help') }}">도움말</a>
                     <a href="{{ route('user') }}">설정</a>
+                    <a>포인트 : {{ Auth::user()->point }}</a>
                     <a class="logout-btn" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">로그아웃</a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         @csrf

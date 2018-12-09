@@ -52,7 +52,7 @@ class UserController extends Controller
         $new_pw = $request->new_pw;
         $new_pw_check = $request->new_pw_check;
 
-		// 새로입력한 패스워드를 적합하게 작성하기 위한 정규식ㄴ
+		// 새로입력한 패스워드를 적합하게 작성하기 위한 정규식
 		$pwPattern = '/^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/';
 
         // email을 통해 db값을 가져오기.
