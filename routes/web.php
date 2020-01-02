@@ -11,6 +11,10 @@
 |
 */
 
+Route::get('test111', function() {
+	return view('task/test');
+});
+
 // 메인 홈
 Route::get('/', function () {
     return view('home/index');
